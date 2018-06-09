@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>装饰者模式-咖啡售卖 | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="装饰者模式：动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。遵循的设计原则是：类应该对扩展开放，对修改关闭
+
+装饰者和被装饰对象有相同的类型
+可以用一个或多个装饰者包装一个对象
+在任何需要原始对象(被包装的)的场合，可以用装饰过的对象代替
+对象可以在任何时候被装饰，可以在运行时动态地、不限量地用装饰者来装饰对象
+ 咖啡种类
+ 综合 HouseBlend 深焙 DarkRoast 低咖啡因 Decaf 浓缩    Espresso
+ 咖啡配料
+牛奶 Milk摩卡 MoCha豆浆 Soy奶泡 Whip
+
+
+Bevarage抽象类123456789101112/** * Bevarage 是一个抽象类，有两个方法 getgetDescription() 及 cost() * Created by randolph on 2018/5/29. */public abstract class Beverage &amp;#123;    String description = &#34;Unknow Beverage&#34;;    public String getDescription()&amp;#123;        return description;    &amp;#125;    public abstract double cost();&amp;#125;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="装饰者模式-咖啡售卖"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 装饰者模式-咖啡售卖</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>装饰者模式：动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。<br>遵循的设计原则是：类应该对扩展开放，对修改关闭</p>
+<ol>
+<li>装饰者和被装饰对象有相同的类型</li>
+<li>可以用一个或多个装饰者包装一个对象</li>
+<li>在任何需要原始对象(被包装的)的场合，可以用装饰过的对象代替</li>
+<li><p>对象可以在任何时候被装饰，可以在运行时动态地、不限量地用装饰者来装饰对象</p>
+<p> <strong>咖啡种类</strong></p>
+<p> 综合 HouseBlend<br> 深焙 DarkRoast<br> 低咖啡因 Decaf<br> 浓缩    Espresso</p>
+<p> <strong>咖啡配料</strong></p>
+<p>牛奶 Milk<br>摩卡 MoCha<br>豆浆 Soy<br>奶泡 Whip</p>
+</li>
+</ol>
+<p>Bevarage抽象类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Bevarage 是一个抽象类，有两个方法 getgetDescription() 及 cost()</span></span><br><span class="line"><span class="comment"> * Created by randolph on 2018/5/29.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    String description = <span class="string">"Unknow Beverage"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>Condiment 抽象类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Condiment(调料)抽象类，就是装饰者</span></span><br><span class="line"><span class="comment"> * 1) 首先，必须让 CondimentDecorator 能够取代 Beverage ，所以得扩展自 Beverage 类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CondimentDecorator</span> <span class="keyword">extends</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 所有的调料装饰者都必须重新实现 getDescription()方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getDescription</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>DarkRoast 咖啡之一<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">**</span><br><span class="line"> *  深焙咖啡</span><br><span class="line"> */</span><br><span class="line">  <span class="comment">// 1 首先让 DarkRoast 扩展自 Beverage 类，因为它是一种饮料</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DarkRoast</span> <span class="keyword">extends</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DarkRoast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 2为了要设置饮料的描述，写一个构造器。description 实例变量继承自 Beverage</span></span><br><span class="line">        description = <span class="string">"DarkRoast Coffee"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 需要计算 DarkRoast 的价格，现在不需要管调料的价格，直接把 DarkRoast 的价格返回即可</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> .<span class="number">69</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> Decaf咖啡之一<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  低咖啡因咖啡</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">  <span class="comment">// 1 首先让 Decaf 扩展自 Beverage 类，因为它是一种饮料</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Decaf</span> <span class="keyword">extends</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Decaf</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 2为了要设置饮料的描述，写一个构造器。description 实例变量继承自 Beverage</span></span><br><span class="line">        description = <span class="string">"Decaf Coffee"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 需要计算 Decaf 的价格，现在不需要管调料的价格，直接把 Decaf 的价格返回即可</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> .<span class="number">69</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> Espresso咖啡之一<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 浓缩咖啡</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">  <span class="comment">// 1 首先让 Espresso 扩展自 Beverage 类，因为它是一种饮料</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Espresso</span> <span class="keyword">extends</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Espresso</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 2为了要设置饮料的描述，写一个构造器。description 实例变量继承自 Beverage</span></span><br><span class="line">        description = <span class="string">"Espresso"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 需要计算 Espresso 的价格，现在不需要管调料的价格，直接把 Espresso 的价格返回即可</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.99</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> HouseBlend咖啡之一<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  综合混合咖啡</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">  <span class="comment">// 1 首先让 HouseBlend 扩展自 Beverage 类，因为它是一种饮料</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HouseBlend</span> <span class="keyword">extends</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HouseBlend</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 2为了要设置饮料的描述，写一个构造器。description 实例变量继承自 Beverage</span></span><br><span class="line">        description = <span class="string">"House Blend Coffee"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 需要计算 HouseBlend 的价格，现在不需要管调料的价格，直接把 HouseBlend 的价格返回即可</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> .<span class="number">89</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配料之一 MoCha<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 要让 Mocha 能够引用一个 Beverage,做法如下 ：</span></span><br><span class="line"><span class="comment"> * 1）用一个实例变量记录饮料也就是被装饰者</span></span><br><span class="line"><span class="comment"> * 2）让被装饰者被装饰到实例变量中，这里把饮料当作构造器的参数</span></span><br><span class="line"><span class="comment"> * 再由构造器将此饮料记录在实例变量中</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// Mocha 是一个装饰者，所以让它扩展自 CondimentDecorator</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mocha</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 用一个实例变量记录饮料也就是被装饰者</span></span><br><span class="line">    Beverage beverage;</span><br><span class="line">    <span class="comment">// 把饮料当作构造器的参数  再由构造器将此饮料记录在实例变量中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mocha</span><span class="params">(Beverage beverage)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.beverage = beverage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beverage.getDescription() + <span class="string">" , Mocha"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 要计算带 Mocha 咖啡的价格，首先把调用委托给被装饰者，以计算价钱，然后再加上</span></span><br><span class="line">        <span class="comment">// Mocha 的价钱，得到最后结果</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.20</span> +beverage.cost();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配料之一 Whip<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 要让 Whip 能够引用一个 Beverage,做法如下 ：</span></span><br><span class="line"><span class="comment"> * 1）用一个实例变量记录饮料也就是被装饰者</span></span><br><span class="line"><span class="comment"> * 2）让被装饰者被装饰到实例变量中，这里把饮料当作构造器的参数</span></span><br><span class="line"><span class="comment"> * 再由构造器将此饮料记录在实例变量中</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// Mocha 是一个装饰者，所以让它扩展自 CondimentDecorator</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Whip</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 用一个实例变量记录饮料也就是被装饰者</span></span><br><span class="line">    Beverage beverage;</span><br><span class="line">    <span class="comment">// 把饮料当作构造器的参数  再由构造器将此饮料记录在实例变量中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Whip</span><span class="params">(Beverage beverage)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.beverage = beverage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beverage.getDescription() + <span class="string">" , Whip"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 要计算带 Mocha 咖啡的价格，首先把调用委托给被装饰者，以计算价钱，然后再加上</span></span><br><span class="line">        <span class="comment">// Mocha 的价钱，得到最后结果</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.32</span> +beverage.cost();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配料之一 Soy<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 要让 Soy 能够引用一个 Beverage,做法如下 ：</span></span><br><span class="line"><span class="comment"> * 1）用一个实例变量记录饮料也就是被装饰者</span></span><br><span class="line"><span class="comment"> * 2）让被装饰者被装饰到实例变量中，这里把饮料当作构造器的参数</span></span><br><span class="line"><span class="comment"> * 再由构造器将此饮料记录在实例变量中</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// Mocha 是一个装饰者，所以让它扩展自 CondimentDecorator</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Soy</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 用一个实例变量记录饮料也就是被装饰者</span></span><br><span class="line">    Beverage beverage;</span><br><span class="line">    <span class="comment">// 把饮料当作构造器的参数  再由构造器将此饮料记录在实例变量中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Soy</span><span class="params">(Beverage beverage)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.beverage = beverage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beverage.getDescription() + <span class="string">" , Whip"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 要计算带 Mocha 咖啡的价格，首先把调用委托给被装饰者，以计算价钱，然后再加上</span></span><br><span class="line">        <span class="comment">// Mocha 的价钱，得到最后结果</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.12</span> +beverage.cost();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by randolph on 2018/5/30.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StarBuzzCoffee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 订一杯 Espresso ,不需要调料，打印出它的描述与价钱</span></span><br><span class="line">        Beverage beverage =<span class="keyword">new</span> Espresso();</span><br><span class="line">        System.out.println(beverage.getDescription()+<span class="string">" $ "</span>+beverage.cost());</span><br><span class="line">        <span class="comment">// 制造出一个 DarkRoast 对象</span></span><br><span class="line">        Beverage beverage1 = <span class="keyword">new</span> DarkRoast();</span><br><span class="line">        <span class="comment">// 加双份的 MoCha</span></span><br><span class="line">        beverage1 = <span class="keyword">new</span> Mocha(beverage1);</span><br><span class="line">        beverage1 = <span class="keyword">new</span> Mocha(beverage1);</span><br><span class="line">        <span class="comment">// 用 Whip 装饰它</span></span><br><span class="line">        beverage1 = <span class="keyword">new</span> Whip(beverage1);</span><br><span class="line">        System.out.println(beverage1.getDescription()+<span class="string">" $ "</span>+beverage1.cost());</span><br><span class="line">        <span class="comment">// 制造出一个 HOuseBlend</span></span><br><span class="line">        Beverage beverage2 = <span class="keyword">new</span> HouseBlend();</span><br><span class="line">        <span class="comment">// 用豆浆装饰它</span></span><br><span class="line">        beverage2 = <span class="keyword">new</span> Soy(beverage2);</span><br><span class="line">        <span class="comment">// 用 MoCha 装饰它</span></span><br><span class="line">        beverage2 = <span class="keyword">new</span> Mocha(beverage2);</span><br><span class="line">        <span class="comment">// 用奶泡装饰它</span></span><br><span class="line">        beverage2 = <span class="keyword">new</span> Whip(beverage2);</span><br><span class="line">        System.out.println(beverage2.getDescription()+<span class="string">" $ "</span>+ beverage2.cost());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// result as follow</span></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Espresso $ 1.99</span></span><br><span class="line"><span class="comment">         DarkRoast Coffee , Mocha , Mocha , Whip $ 1.41</span></span><br><span class="line"><span class="comment">         House Blend Coffee , Whip , Mocha , Whip $ 1.53</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果在菜单上加上咖啡的容量大小，代顾客选择小杯(tall)、中杯(grande)、大杯(venti),可以在 Beverage 类中<br>加上 getSize() 和 setSize()。小中大杯咖啡分别计算价格</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2018/06/04/玛剧-心甘情愿/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2018/05/26/NIO/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-30 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

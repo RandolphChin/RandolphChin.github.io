@@ -1,0 +1,511 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header page-header-inverse ">
+  <h1 class="title title-inverse ">Hexo</h1>
+</div>
+
+<div class="row page">
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+      <i class="fa fa-heart"></i>
+      Welcome to Randolph Chin&#39;s Home.
+</div>    
+		<div id="top_search"></div>
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-06-04 </div>
+			<div class="article-title"><a href="/2018/06/04/玛剧-心甘情愿/" >玛剧-心甘情愿</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>有人用一生的时间留着一个人，但是对方只用了一刹那就决定离开，永恒的爱情是来自单方面的心甘情愿。</p>
+
+	
+	</div>
+  <a type="button" href="/2018/06/04/玛剧-心甘情愿/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-05-30 </div>
+			<div class="article-title"><a href="/2018/05/30/装饰者模式-咖啡售卖/" >装饰者模式-咖啡售卖</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>装饰者模式：动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。<br>遵循的设计原则是：类应该对扩展开放，对修改关闭</p>
+<ol>
+<li>装饰者和被装饰对象有相同的类型</li>
+<li>可以用一个或多个装饰者包装一个对象</li>
+<li>在任何需要原始对象(被包装的)的场合，可以用装饰过的对象代替</li>
+<li><p>对象可以在任何时候被装饰，可以在运行时动态地、不限量地用装饰者来装饰对象</p>
+<p> <strong>咖啡种类</strong></p>
+<p> 综合 HouseBlend<br> 深焙 DarkRoast<br> 低咖啡因 Decaf<br> 浓缩    Espresso</p>
+<p> <strong>咖啡配料</strong></p>
+<p>牛奶 Milk<br>摩卡 MoCha<br>豆浆 Soy<br>奶泡 Whip</p>
+</li>
+</ol>
+<p>Bevarage抽象类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Bevarage 是一个抽象类，有两个方法 getgetDescription() 及 cost()</span></span><br><span class="line"><span class="comment"> * Created by randolph on 2018/5/29.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    String description = <span class="string">"Unknow Beverage"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2018/05/30/装饰者模式-咖啡售卖/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-05-26 </div>
+			<div class="article-title"><a href="/2018/05/26/NIO/" >NIO</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p> 关于 Java NIO 的详解 <a href="https://blog.csdn.net/suifeng3051/article/details/48160753" target="_blank" rel="noopener">CSDN</a> 上有详细解释<br> NIO即新的输入输出，这个库是在JDK1.4中才引入的。它在标准java代码中提供了高速的面向块的IO操作</p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ol>
+<li>IO 输入输出<br> 使用流的方式来处理IO，所有的IO都被视作是单个字节的移动，通过stream对象一次移动一个字节，<br>流IO负责把对象与字节的相互转换</li>
+<li>NIO (NEW IO)<br> 这个库是在JDK1.4中引入的。NIO和IO有相同的作用和目的，但实现方式不同，NIO主要用到的是块，<br>所以NIO的效率要比IO高很多<h3 id="流与块的比较"><a href="#流与块的比较" class="headerlink" title="流与块的比较"></a>流与块的比较</h3>NIO和IO最大的区别是数据打包和传输方式。IO是以流的方式处理数据，而NIO是以块的方式处理数据<br><strong>面向流的IO</strong> 一次一个字节的处理数据，一个输入流产生一个字节，一个输出流就消费一个字节,通常处理的很慢<br><strong>面向块的IO</strong> 系统以块的形式处理数据。每一个操作都在一步中产生或消费一个数据块。按块要比按流快的多
+	
+	</div>
+  <a type="button" href="/2018/05/26/NIO/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-05-26 </div>
+			<div class="article-title"><a href="/2018/05/26/观察者模式/" >观察者模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>观察者模式 = 订阅者 + 发布者</p>
+<ol>
+<li>报社的业务就是出版报纸</li>
+<li>向某家报社订阅报纸，只要他们有新报纸出版，就会给你送，只要你是他们的订户，你就会一直收到报纸。</li>
+<li>当你不想再看报纸的时候，取消订阅，他们就不会再送新报纸来。</li>
+<li>只要报社还在运营，就会一直有人向他们订阅或者取消订阅报纸。</li>
+</ol>
+<p>观察者模式定义了对象之间的一对多依赖，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。<br>观察者模式提供了一种对象设计，让主题和观察者之间松耦合<br>主题(Observable)用一个共同的接口来更新观察者<br>可从被观察者处推(push)或拉(pull)数据<br>有多个观察者时，不可以依赖特定的通知次序<br>注意 java.utl.Observable 实现上所带来的一些问题:</p>
+<ol>
+<li>Observable 是一个类，必须设计一个类继承它，限制了可复用性</li>
+<li>Observable 将关键方法保护起来; 如setChanged() 被保护起来，除非继承自 Observable，否则无法<br>创建 Observable 实例并组合到自己的对象中来。这一设计违反了”多用组合，少用继承”原则
+	
+	</div>
+  <a type="button" href="/2018/05/26/观察者模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-05-20 </div>
+			<div class="article-title"><a href="/2018/05/20/plsqldeveloper创建用户表空间/" >plsqldeveloper创建用户表空间</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>首先以管理员身份登录 plsqlDeveloper 执行 SQL </p>
+<h4 id="创建表空间"><a href="#创建表空间" class="headerlink" title="创建表空间"></a>创建表空间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create tablespace hsw</span><br><span class="line">datafile &apos;D:\sql\oracle\oracledata\hsw.dbf&apos; size 5000M     ----初始表空间大小</span><br><span class="line">default storage(initial 1000M</span><br><span class="line">next 100M                             ----自动增加表空间大小</span><br><span class="line">minextents 1</span><br><span class="line">maxextents unlimited</span><br><span class="line">pctincrease 0); ----first 创建表空间hsw</span><br></pre></td></tr></table></figure>
+<h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><p>FILE –&gt; NEW –&gt; USER<br>ROLE PRIVILEGES 中输入 dba connect resource </p>
+<h4 id="查看所有表空间文件物理路径及是否自增"><a href="#查看所有表空间文件物理路径及是否自增" class="headerlink" title="查看所有表空间文件物理路径及是否自增"></a>查看所有表空间文件物理路径及是否自增</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select tablespace_name,file_name,autoextensible from dba_data_files;</span><br></pre></td></tr></table></figure>
+<h4 id="表空间调整为自增"><a href="#表空间调整为自增" class="headerlink" title="表空间调整为自增"></a>表空间调整为自增</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database datafile &apos;D:\ORADATA\ORCL\DATACENTER.DBF&apos; autoextend on;</span><br></pre></td></tr></table></figure>
+<h4 id="表空间调整大小"><a href="#表空间调整大小" class="headerlink" title="表空间调整大小"></a>表空间调整大小</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alter database datafile &apos;D:\ORADATA\ORCL\DATACENTER.DBF&apos; resize 10000m;</span><br></pre></td></tr></table></figure>
+
+	
+	</div>
+  <a type="button" href="/2018/05/20/plsqldeveloper创建用户表空间/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-04-19 </div>
+			<div class="article-title"><a href="/2018/04/19/我爱男保姆-祝福/" >我爱男保姆-祝福</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h4 id="我爱男保姆-祝福"><a href="#我爱男保姆-祝福" class="headerlink" title="我爱男保姆-祝福"></a>我爱男保姆-祝福</h4><p>那些曾给自己带来幸福的人们，难道不是理所应当的从自己这里得到力所能及的祝福吗？<br>那些具备美好品质的人们，就应该获得幸福.</p>
+
+	
+	</div>
+  <a type="button" href="/2018/04/19/我爱男保姆-祝福/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-04-07 </div>
+			<div class="article-title"><a href="/2018/04/07/wait-notify模拟Queue/" >wait/notify模拟Queue</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>BlockingQueue: 它是一个队列，并且支持阻塞的机制，阻塞的放入和得到数据，下面是<br>实现 LinkedBlockingQueue 两个简单的方法 put 和 take<br>put:把 Object 加到 BlockingQueue 里，如果 BlockQueue 没有空间，则调用此方法<br>的线程被阻断，直到 BlockingQueue 里面有空间再继续<br>take: 取走 BlockingQueue 里排在首位的对象，若 BlockingQueue 为空,阻断进入等待<br>状态直到 BlockingQueue 有新的数据被加入<br>
+	
+	</div>
+  <a type="button" href="/2018/04/07/wait-notify模拟Queue/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-01-30 </div>
+			<div class="article-title"><a href="/2018/01/30/天水围的日与夜-做人难与易/" >天水围的日与夜-做人难与易</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h4 id="天水围的日与夜-做人难与易"><a href="#天水围的日与夜-做人难与易" class="headerlink" title="天水围的日与夜-做人难与易"></a>天水围的日与夜-做人难与易</h4><p>做人难，因为人心贪，又想要名利，又想要实惠。<br>做人易，因为顺道而为，不要勉强也没什么会拦住你的去路</p>
+
+	
+	</div>
+  <a type="button" href="/2018/01/30/天水围的日与夜-做人难与易/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-01-23 </div>
+			<div class="article-title"><a href="/2018/01/23/自定义表单验证/" >自定义表单验证</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>iView 组件中 Form 组件基于  async-validator 实现的数据验证, {type: ‘number’, message: ‘请输入数字’, trigger: ‘blur’} ,验证数字<br>时，只能验证一次，需要自定义数字校验器,校验器写在 data() 里面</p>
+<h4 id="form"><a href="#form" class="headerlink" title="form"></a>form</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;Modal v-model=&quot;modalAddParentEquipData&quot; width=&quot;380&quot; @on-ok=&quot;submitAddParentEquipData&quot; title=&quot;添加一级设备&quot;&gt;</span><br><span class="line">    &lt;Form ref=&quot;formItemAddParentEquip&quot; :model=&quot;formItemAddParentEquip&quot; :label-width=&quot;120&quot; :rules=&quot;ruleCustomAdd&quot;&gt;</span><br><span class="line">        &lt;FormItem label=&quot;一级设备名称&quot; prop=&quot;eqname&quot;&gt;</span><br><span class="line">            &lt;Input type=&quot;text&quot; v-model=&quot;formItemAddParentEquip.eqname&quot; placeholder=&quot;输入一级设备&quot; /&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;设备补助(￥/台班)&quot; prop=&quot;equipallowance&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.equipallowance&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;对内价格&quot; prop=&quot;unitmoney&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.unitmoney&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;对外价格&quot; prop=&quot;unitmoneyouter&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.unitmoneyouter&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;设备用途&quot; prop=&quot;type&quot;&gt;</span><br><span class="line">            &lt;RadioGroup v-model=&quot;formItemAddParentEquip.type&quot;&gt;</span><br><span class="line">                &lt;Radio label=&quot;0&quot;&gt;普通设备&lt;/Radio&gt;</span><br><span class="line">                &lt;Radio label=&quot;1&quot;&gt;特殊设备(补助公里数)&lt;/Radio&gt;</span><br><span class="line">            &lt;/RadioGroup&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem&gt;</span><br><span class="line">            &lt;Button type=&quot;ghost&quot; @click=&quot;handleReset(&apos;formItemAddParentEquip&apos;)&quot; style=&quot;float: right&quot;&gt;重置&lt;/Button&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">    &lt;/Form&gt;</span><br><span class="line">&lt;/Modal&gt;</span><br></pre></td></tr></table></figure>
+	
+	</div>
+  <a type="button" href="/2018/01/23/自定义表单验证/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-01-09 </div>
+			<div class="article-title"><a href="/2018/01/09/定投策略/" >定投策略</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>赚钱的策略不难获得，关键在于对策略的理解与坚持。<br>因为经济总量呈现螺旋式上升，作为经济晴雨表的大盘指数也会震荡上行，所以我在任何时间点买入都是正确的.<br><strong>敲黑板</strong> 基金坚持周四不赎回，周五不申购原则</p>
+<h3 id="华尔街精英推荐的完美定投策略"><a href="#华尔街精英推荐的完美定投策略" class="headerlink" title="华尔街精英推荐的完美定投策略"></a>华尔街精英推荐的完美定投策略</h3><p>初入市场的投资者，只选择一个交易品种：沪深300指数，ETF代码（160706）</p>
+<h4 id="无估值、简单定投策略"><a href="#无估值、简单定投策略" class="headerlink" title="无估值、简单定投策略"></a>无估值、简单定投策略</h4><p>定投交易策略很简单，每个月末，按收盘价买入1000元，其中金额是固定数值，不跟随行情的涨跌而变化<br>机械定投，可以避免选时、选股的难点，获得大幅超越指数的收益</p>
+<h4 id="估值定投法"><a href="#估值定投法" class="headerlink" title="估值定投法"></a>估值定投法</h4><pre><code>巴菲特的老师，格雷厄姆曾经谈到，最优的投资组合就在于：风险投资+固定收益的合理配比。
+反映在市场中，就是牛市中有仓位，且仓位随着行情上涨而不断减少并增加固定收益产品的比例。
+</code></pre><p>熊市中，不断卖出固收产品，不断买入低估的权益投资，增加比例。</p>
+<p>按百年标普的运行规律，市场就在10倍到50倍的市盈率中间波动(市场平均市盈率)<br><a href="http://www.csindex.com.cn/zh-CN" target="_blank" rel="noopener">中证指数有限公司</a> 可以查看，或者<a href="http://www.jiucaishuo.com/?/invest" target="_blank" rel="noopener">韭菜说</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">按照国际市场（港股、美股）等成熟市场的主流规律，10-15倍为市场正常估值，正常定投1000元；</span><br><span class="line">10倍以下为低估区域，定投2000元；15-20倍为高估区域，定投500元；20倍以上为风险区域，每月减持500元</span><br></pre></td></tr></table></figure></p>
+
+	
+	</div>
+  <a type="button" href="/2018/01/09/定投策略/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+
+		
+		   <li class="next"> <a href="/page/2/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+        
+	
+</ul>
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+		
+			
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/Invest/">Invest<span>1</span></a></li>
+		
+			<li><a href="/tags/Java/">Java<span>3</span></a></li>
+		
+			<li><a href="/tags/SQL/">SQL<span>1</span></a></li>
+		
+			<li><a href="/tags/Vue/">Vue<span>1</span></a></li>
+		
+			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Recent Posts</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2018/06/04/玛剧-心甘情愿/" ><i class="fa fa-file-o"></i>玛剧-心甘情愿</a>
+      </li>
+    
+      <li>
+        <a href="/2018/05/30/装饰者模式-咖啡售卖/" ><i class="fa fa-file-o"></i>装饰者模式-咖啡售卖</a>
+      </li>
+    
+      <li>
+        <a href="/2018/05/26/NIO/" ><i class="fa fa-file-o"></i>NIO</a>
+      </li>
+    
+      <li>
+        <a href="/2018/05/26/观察者模式/" ><i class="fa fa-file-o"></i>观察者模式</a>
+      </li>
+    
+      <li>
+        <a href="/2018/05/20/plsqldeveloper创建用户表空间/" ><i class="fa fa-file-o"></i>plsqldeveloper创建用户表空间</a>
+      </li>
+    
+  </ul>
+</div>
+
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://bloom2036.github.io" title="Freemind's Github repository." target="_blank"]);">Bloom</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="http://www.github.com/wzpan" title="My Github account." target="_blank"]);">My Github</a></li>
+	
+		<li><i class="fa fa-linkedin"></i><a href="http://www.linkedin.com/in/hahack" title="My Linkin account." target="_blank"]);">My LinkedIn</a></li>
+	
+	</ul>
+</div>
+
+
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
+
+	
+	
+</div> <!-- row-fluid -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

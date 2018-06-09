@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>自定义表单验证 | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="iView 组件中 Form 组件基于  async-validator 实现的数据验证, {type: ‘number’, message: ‘请输入数字’, trigger: ‘blur’} ,验证数字时，只能验证一次，需要自定义数字校验器,校验器写在 data() 里面
+form12345678910111213141516171819202122232425&amp;lt;Modal v-model=&amp;quot;modalAddParentEquipData&amp;quot; width=&amp;quot;380&amp;quot; @on-ok=&amp;quot;submitAddParentEquipData&amp;quot; title=&amp;quot;添加一级设备&amp;quot;&amp;gt;    &amp;lt;Form ref=&amp;quot;formItemAddParentEquip&amp;quot; :model=&amp;quot;formItemAddParentEquip&amp;quot; :label-width=&amp;quot;120&amp;quot; :rules=&amp;quot;ruleCustomAdd&amp;quot;&amp;gt;        &amp;lt;FormItem label=&amp;quot;一级设备名称&amp;quot; prop=&amp;quot;eqname&amp;quot;&amp;gt;            &amp;lt;Input type=&amp;quot;text&amp;quot; v-model=&amp;quot;formItemAddParentEquip.eqname&amp;quot; placeholder=&amp;quot;输入一级设备&amp;quot; /&amp;gt;        &amp;lt;/FormItem&amp;gt;        &amp;lt;FormItem label=&amp;quot;设备补助(￥/台班)&amp;quot; prop=&amp;quot;equipallowance&amp;quot;&amp;gt;            &amp;lt;Input v-model=&amp;quot;formItemAddParentEquip.equipallowance&amp;quot; placeholder=&amp;quot;Enter something...&amp;quot;&amp;gt;&amp;lt;/Input&amp;gt;        &amp;lt;/FormItem&amp;gt;        &amp;lt;FormItem label=&amp;quot;对内价格&amp;quot; prop=&amp;quot;unitmoney&amp;quot;&amp;gt;            &amp;lt;Input v-model=&amp;quot;formItemAddParentEquip.unitmoney&amp;quot; placeholder=&amp;quot;Enter something...&amp;quot;&amp;gt;&amp;lt;/Input&amp;gt;        &amp;lt;/FormItem&amp;gt;        &amp;lt;FormItem label=&amp;quot;对外价格&amp;quot; prop=&amp;quot;unitmoneyouter&amp;quot;&amp;gt;            &amp;lt;Input v-model=&amp;quot;formItemAddParentEquip.unitmoneyouter&amp;quot; placeholder=&amp;quot;Enter something...&amp;quot;&amp;gt;&amp;lt;/Input&amp;gt;        &amp;lt;/FormItem&amp;gt;        &amp;lt;FormItem label=&amp;quot;设备用途&amp;quot; prop=&amp;quot;type&amp;quot;&amp;gt;            &amp;lt;RadioGroup v-model=&amp;quot;formItemAddParentEquip.type&amp;quot;&amp;gt;                &amp;lt;Radio label=&amp;quot;0&amp;quot;&amp;gt;普通设备&amp;lt;/Radio&amp;gt;                &amp;lt;Radio label=&amp;quot;1&amp;quot;&amp;gt;特殊设备(补助公里数)&amp;lt;/Radio&amp;gt;            &amp;lt;/RadioGroup&amp;gt;        &amp;lt;/FormItem&amp;gt;        &amp;lt;FormItem&amp;gt;            &amp;lt;Button type=&amp;quot;ghost&amp;quot; @click=&amp;quot;handleReset(&amp;apos;formItemAddParentEquip&amp;apos;)&amp;quot; style=&amp;quot;float: right&amp;quot;&amp;gt;重置&amp;lt;/Button&amp;gt;        &amp;lt;/FormItem&amp;gt;    &amp;lt;/Form&amp;gt;&amp;lt;/Modal&amp;gt;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="自定义表单验证"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 自定义表单验证</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>iView 组件中 Form 组件基于  async-validator 实现的数据验证, {type: ‘number’, message: ‘请输入数字’, trigger: ‘blur’} ,验证数字<br>时，只能验证一次，需要自定义数字校验器,校验器写在 data() 里面</p>
+<h4 id="form"><a href="#form" class="headerlink" title="form"></a>form</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;Modal v-model=&quot;modalAddParentEquipData&quot; width=&quot;380&quot; @on-ok=&quot;submitAddParentEquipData&quot; title=&quot;添加一级设备&quot;&gt;</span><br><span class="line">    &lt;Form ref=&quot;formItemAddParentEquip&quot; :model=&quot;formItemAddParentEquip&quot; :label-width=&quot;120&quot; :rules=&quot;ruleCustomAdd&quot;&gt;</span><br><span class="line">        &lt;FormItem label=&quot;一级设备名称&quot; prop=&quot;eqname&quot;&gt;</span><br><span class="line">            &lt;Input type=&quot;text&quot; v-model=&quot;formItemAddParentEquip.eqname&quot; placeholder=&quot;输入一级设备&quot; /&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;设备补助(￥/台班)&quot; prop=&quot;equipallowance&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.equipallowance&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;对内价格&quot; prop=&quot;unitmoney&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.unitmoney&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;对外价格&quot; prop=&quot;unitmoneyouter&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.unitmoneyouter&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;设备用途&quot; prop=&quot;type&quot;&gt;</span><br><span class="line">            &lt;RadioGroup v-model=&quot;formItemAddParentEquip.type&quot;&gt;</span><br><span class="line">                &lt;Radio label=&quot;0&quot;&gt;普通设备&lt;/Radio&gt;</span><br><span class="line">                &lt;Radio label=&quot;1&quot;&gt;特殊设备(补助公里数)&lt;/Radio&gt;</span><br><span class="line">            &lt;/RadioGroup&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem&gt;</span><br><span class="line">            &lt;Button type=&quot;ghost&quot; @click=&quot;handleReset(&apos;formItemAddParentEquip&apos;)&quot; style=&quot;float: right&quot;&gt;重置&lt;/Button&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">    &lt;/Form&gt;</span><br><span class="line">&lt;/Modal&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="data"><a href="#data" class="headerlink" title="data ()"></a>data ()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">    const validateParentEqName = (rule, value, callback) =&gt; &#123;</span><br><span class="line">        console.log(&apos;validate......&apos;);</span><br><span class="line">        console.log(value);</span><br><span class="line">        if (!value) &#123;</span><br><span class="line">            return callback(new Error(&apos;Eqname cannot be empty&apos;));</span><br><span class="line">        &#125;</span><br><span class="line">        // 异步验证是否已经存在</span><br><span class="line">        axios.get(&apos;/equipment/validateEquipExistByEqName&apos;, &#123;</span><br><span class="line">            eqid: value</span><br><span class="line">        &#125;).then((resp) =&gt; &#123;</span><br><span class="line">            if (value &lt; 18) &#123;</span><br><span class="line">                callback(new Error(&apos;Must be over 18 years of age&apos;));</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                callback();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 对数字的校验不能使用 type: &apos;number&apos;,必须自定义检验规则</span><br><span class="line">    const validateNumber = (rule, value, callback) =&gt; &#123;</span><br><span class="line">        if (!Number.isInteger(+value)) &#123;</span><br><span class="line">            callback(new Error(&apos;请输入数字值&apos;));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            callback();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">        formItemAddParentEquip: &#123;</span><br><span class="line">            eqname: &apos;&apos;,</span><br><span class="line">            equipallowance: 0,</span><br><span class="line">            unitmoney: 0,</span><br><span class="line">            unitmoneyouter: 0,</span><br><span class="line">            type: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        ruleCustomAdd: &#123;</span><br><span class="line">            eqname: [</span><br><span class="line">                &#123; required: true, validator: validateParentEqName, trigger: &apos;blur&apos; &#125;</span><br><span class="line">            ],</span><br><span class="line">            equipallowance: [</span><br><span class="line">                &#123;required: true, message: &apos;The equipallowance cannot be empty&apos;, trigger: &apos;blur&apos;&#125;,</span><br><span class="line">                &#123;validator: validateNumber, trigger: &apos;blur&apos;&#125;</span><br><span class="line">            ],</span><br><span class="line">            unitmoney: [</span><br><span class="line">                &#123;required: true, message: &apos;The unitmoney cannot be empty&apos;, trigger: &apos;blur&apos;&#125;,</span><br><span class="line">                &#123;validator: validateNumber, trigger: &apos;blur&apos;&#125;</span><br><span class="line">            ],</span><br><span class="line">            unitmoneyouter: [</span><br><span class="line">                &#123;required: true, message: &apos;The unitmoneyouter cannot be empty&apos;, trigger: &apos;blur&apos;&#125;,</span><br><span class="line">                &#123;validator: validateNumber, trigger: &apos;blur&apos;&#125;</span><br><span class="line">            ],</span><br><span class="line">            type: [</span><br><span class="line">                &#123; required: true, message: &apos;Please select type&apos;, trigger: &apos;change&apos; &#125;,</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="method"><a href="#method" class="headerlink" title="method ()"></a>method ()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    getData () &#123;</span><br><span class="line">        // /equipment/queryParentEquipment</span><br><span class="line">        axios.get(&apos;src/mock/data-equipment-parent.json&apos;, &#123;</span><br><span class="line">            searchParentEquipName: this.searchParentEquipName</span><br><span class="line">        &#125;).then((response) =&gt; &#123;</span><br><span class="line">            this.equipmentData = response.data.equipments.data;</span><br><span class="line">            this.currentPage = response.data.equipments.currentPage;</span><br><span class="line">            this.pageSize = response.data.equipments.pageSize;</span><br><span class="line">            this.total = response.data.equipments.totalCount;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    submitAddParentEquipData () &#123;</span><br><span class="line">        console.log(this.formItemAddParentEquip);</span><br><span class="line">        this.$refs.formItemAddParentEquip.validate((valid) =&gt; &#123;</span><br><span class="line">            if (valid) &#123;</span><br><span class="line">                axios.post(&apos;/equipment/addParentEquip&apos;, this.formItemAddParentEquip).then((response) =&gt; &#123;</span><br><span class="line">                    this.$Message.info(&apos;add success&apos;);</span><br><span class="line">                    this.getData();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                this.$Message.error(&apos;Fail!&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    handleReset (name) &#123;</span><br><span class="line">        this.$refs[name].resetFields();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2018/01/30/天水围的日与夜-做人难与易/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2018/01/09/定投策略/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-01-23 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Vue/">Vue<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
