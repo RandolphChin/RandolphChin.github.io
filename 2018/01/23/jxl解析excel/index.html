@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>jxl解析excel | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="java 操作excel表格的工具类库
+Controller12345678910111213141516171819202122232425262728293031@RequiresPermissions(&amp;quot;user:upload&amp;quot;)	@ResponseBody	@RequestMapping(value=&amp;quot;/upload&amp;quot;,method=RequestMethod.POST)	public String upload(Model model,@RequestParam(&amp;quot;file&amp;quot;)MultipartFile file,HttpServletRequest request)&amp;#123;		if(!file.isEmpty())&amp;#123;			 //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中             String realPath = request.getSession().getServletContext().getRealPath(&amp;quot;/WEB-INF/upload&amp;quot;);             //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉           try &amp;#123;				FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, file.getOriginalFilename()));				List&amp;lt;User&amp;gt; uploadUsers=userExcelService.getFromExcel(new File(realPath+&amp;quot;\\&amp;quot;+file.getOriginalFilename()));						userService.saveWithCheckDuplicate(uploadUsers);				log.info(&amp;quot;上传用户:&amp;quot;+Arrays.toString(uploadUsers.toArray()));			&amp;#125; catch (IOException e) &amp;#123;				log.error(&amp;quot;保存或读取文件出错&amp;quot;);				e.printStackTrace();				return &amp;quot;saveFileError&amp;quot;;			&amp;#125; catch (BiffException e) &amp;#123;				e.printStackTrace();				return &amp;quot;fileStreamError&amp;quot;;			&amp;#125; catch (UserDuplicateException e) &amp;#123;				e.printStackTrace();				log.warn(&amp;quot;上传文件包含与数据库重复的对象&amp;quot;);				return &amp;quot;entityDuplicate&amp;quot;;							&amp;#125; 		&amp;#125;else&amp;#123;			return &amp;quot;fileEmpty&amp;quot;;		&amp;#125;				return &amp;quot;uploadSuccess&amp;quot;;	&amp;#125;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="jxl解析excel"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> jxl解析excel</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>java 操作excel表格的工具类库</p>
+<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermissions(&quot;user:upload&quot;)</span><br><span class="line">	@ResponseBody</span><br><span class="line">	@RequestMapping(value=&quot;/upload&quot;,method=RequestMethod.POST)</span><br><span class="line">	public String upload(Model model,@RequestParam(&quot;file&quot;)MultipartFile file,HttpServletRequest request)&#123;</span><br><span class="line">		if(!file.isEmpty())&#123;</span><br><span class="line">			 //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中  </span><br><span class="line">           String realPath = request.getSession().getServletContext().getRealPath(&quot;/WEB-INF/upload&quot;);  </span><br><span class="line">           //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉</span><br><span class="line">           try &#123;</span><br><span class="line">				FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, file.getOriginalFilename()));</span><br><span class="line">				List&lt;User&gt; uploadUsers=userExcelService.getFromExcel(new File(realPath+&quot;\\&quot;+file.getOriginalFilename()));		</span><br><span class="line">				userService.saveWithCheckDuplicate(uploadUsers);</span><br><span class="line">				log.info(&quot;上传用户:&quot;+Arrays.toString(uploadUsers.toArray()));</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				log.error(&quot;保存或读取文件出错&quot;);</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">				return &quot;saveFileError&quot;;</span><br><span class="line">			&#125; catch (BiffException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">				return &quot;fileStreamError&quot;;</span><br><span class="line">			&#125; catch (UserDuplicateException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">				log.warn(&quot;上传文件包含与数据库重复的对象&quot;);</span><br><span class="line">				return &quot;entityDuplicate&quot;;				</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			return &quot;fileEmpty&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		return &quot;uploadSuccess&quot;;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;User&gt; getFromExcel(File file) throws BiffException, IOException   &#123;</span><br><span class="line">		List&lt;User&gt; userlist = new ArrayList&lt;User&gt;();</span><br><span class="line">		Workbook rwb = null;</span><br><span class="line">		String cellStr = null;</span><br><span class="line">		User user = null;</span><br><span class="line">		// 创建输入流</span><br><span class="line">		// 获取Excel文件对象</span><br><span class="line">		if (file == null || !file.exists()) &#123;</span><br><span class="line">			return null;</span><br><span class="line">		&#125;</span><br><span class="line">		InputStream stream = new FileInputStream(file);</span><br><span class="line">		rwb = Workbook.getWorkbook(stream);</span><br><span class="line">		// 获取文件的指定工作表 默认的第一个</span><br><span class="line">		Sheet sheet = rwb.getSheet(0);</span><br><span class="line">		// 行数(表头的目录不需要，从1开始)</span><br><span class="line">		for (int i = 1; i &lt; sheet.getRows(); i++) &#123;</span><br><span class="line">			// 创建一个user对象对应一行， 用来存储每一列的值</span><br><span class="line">			user = new User();</span><br><span class="line">			// 列数			</span><br><span class="line">			cellStr = sheet.getCell(0, i).getContents().trim();// 第一列，业主姓名</span><br><span class="line">			user.setUsername(cellStr);</span><br><span class="line">			cellStr = sheet.getCell(1, i).getContents().trim();// 单元号</span><br><span class="line">			user.setUserAlias(cellStr);</span><br><span class="line">			//设置默认值</span><br><span class="line">			user.setPassword(Constants.DEFAULT_PASSWORD);</span><br><span class="line">			user.setCreateTime(new Date());</span><br><span class="line">			user.setCreatorName(getCurrentUser().getUsername());</span><br><span class="line">			</span><br><span class="line">			// 把刚获取的列存入userlist</span><br><span class="line">			userlist.add(user);</span><br><span class="line">		&#125;</span><br><span class="line">		return userlist;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2018/01/23/Mysql的sql-mode问题/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2018/01/11/A股交易手续费/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-01-23 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/POI/">POI<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

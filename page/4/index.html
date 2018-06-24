@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 4 | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header page-header-inverse ">
+  <h1 class="title title-inverse ">Hexo</h1>
+</div>
+
+<div class="row page">
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+      <i class="fa fa-heart"></i>
+      Welcome to Randolph Chin&#39;s Home.
+</div>    
+		<div id="top_search"></div>
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2016-06-19 </div>
+			<div class="article-title"><a href="/2016/06/19/Linux下进入MySql/" >MySql And Tomcat</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>linux环境下进入 Mysql数据库</p>
+<h3 id="Linux-进入-Mysql数据库"><a href="#Linux-进入-Mysql数据库" class="headerlink" title="Linux 进入 Mysql数据库"></a>Linux 进入 Mysql数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql -u gzuser -p</span><br><span class="line">// next step enter your password here</span><br><span class="line">show databases;  //展示数据库</span><br><span class="line">use gzdb;  //进入gadb数据库</span><br><span class="line">show tables; //展示所有表</span><br><span class="line">//如果想要创建新的表，直接复制sql文件内容，粘贴至此即可</span><br><span class="line"></span><br><span class="line">// 创建数据库 编码utf8</span><br><span class="line">CREATE DATABASE `test2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci; </span><br><span class="line">// 查看编码</span><br><span class="line">SHOW VARIABLES LIKE &apos;char%&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据库编码"><a href="#修改数据库编码" class="headerlink" title="修改数据库编码"></a>修改数据库编码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 编辑 /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line"></span><br><span class="line"> 在lc-messages-dir= /usr/share/mysql 语句后添加 character-set-server=utf8</span><br><span class="line"></span><br><span class="line"> // 编辑 /etc/mysql/conf.d/mysql.cnf</span><br><span class="line"> 添加代码：default-character-set=utf8</span><br><span class="line"></span><br><span class="line"> /etc/init.d/mysql restart 命令重启MySQL服务</span><br></pre></td></tr></table></figure>
+<h3 id="查看mysql默认读取my-cnf的目录"><a href="#查看mysql默认读取my-cnf的目录" class="headerlink" title="查看mysql默认读取my.cnf的目录"></a>查看mysql默认读取my.cnf的目录</h3><pre><code>如果没有设置使用指定目录的my.cnf，mysql启动时会读取安装目录根目录及默认目录下的my.cnf文件
+</code></pre><p>查看mysql启动时读取配置文件的默认目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql --help|grep &apos;my.cnf&apos;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">          order of preference, my.cnf, $MYSQL_TCP_PORT,</span><br><span class="line">/etc/my.cnf  /etc/mysql/my.cnf  /usr/etc/my.cnf ~/.my.cnf</span><br></pre></td></tr></table></figure></p>
+<p>/etc/my.cnf, /etc/mysql/my.cnf, /usr/local/etc/my.cnf, ~/.my.cnf 这些就是mysql默认会搜寻my.cnf的目录，顺序排前的优先。</p>
+<p>添加 character-set-server=utf8</p>
+<h3 id="Linux-安装-Tomcat"><a href="#Linux-安装-Tomcat" class="headerlink" title="Linux 安装 Tomcat"></a>Linux 安装 Tomcat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tomcat 安装目录在/usr/share/tomcat7    启动、停止命令、日志都在这个目录</span><br><span class="line">web app，配置文件在/var/lib/tomcat7</span><br></pre></td></tr></table></figure>
+<h3 id="Linux-查看MySQL状态"><a href="#Linux-查看MySQL状态" class="headerlink" title="Linux 查看MySQL状态"></a>Linux 查看MySQL状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">service mysql status;</span><br><span class="line">service mysql start;</span><br><span class="line">service mysql stop;</span><br><span class="line"></span><br><span class="line">// 启动、停止脚本有错误。</span><br><span class="line">/usr/share/tomcat7/bin/startup.sh</span><br><span class="line">/usr/share/tomcat7/bin/shutdown.sh</span><br><span class="line">两个脚本的第三十行下面，添加一行：export CATALINA_BASE=/var/lib/tomcat7</span><br></pre></td></tr></table></figure>
+<h3 id="debian-安装-Mysql"><a href="#debian-安装-Mysql" class="headerlink" title="debian 安装 Mysql"></a>debian 安装 Mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get install software-properties-common</span><br><span class="line">add-apt-repository -y ppa:ondrej/mysql-5.5</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install mysql-server-core-5.5</span><br></pre></td></tr></table></figure>
+
+	
+	</div>
+  <a type="button" href="/2016/06/19/Linux下进入MySql/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+<ul class="pagination">
+	 
+		
+    	<li class="prev"><a href="/page/3/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i> Prev</a></li>
+  		
+
+        <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+
+		
+          <li class="next disabled"><a>Next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+        
+	
+</ul>
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+		
+			
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/SQL/">SQL<span>2</span></a></li>
+		
+			<li><a href="/tags/Thread/">Thread<span>2</span></a></li>
+		
+			<li><a href="/tags/Io/">Io<span>1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span>1</span></a></li>
+		
+			<li><a href="/tags/POI/">POI<span>1</span></a></li>
+		
+			<li><a href="/tags/Java/">Java<span>2</span></a></li>
+		
+			<li><a href="/tags/Design-Pattern/">Design Pattern<span>3</span></a></li>
+		
+			<li><a href="/tags/Vue/">Vue<span>1</span></a></li>
+		
+			<li><a href="/tags/Invest/">Invest<span>2</span></a></li>
+		
+			<li><a href="/tags/Linux/">Linux<span>4</span></a></li>
+		
+			<li><a href="/tags/Sql/">Sql<span>1</span></a></li>
+		
+			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Recent Posts</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2018/06/24/window删除多余启动项/" ><i class="fa fa-file-o"></i>window删除多余启动项</a>
+      </li>
+    
+      <li>
+        <a href="/2018/06/24/并发编程中的原子性-可见性-有序性/" ><i class="fa fa-file-o"></i>并发编程中的原子性-可见性-有序性</a>
+      </li>
+    
+      <li>
+        <a href="/2018/06/24/内存模型/" ><i class="fa fa-file-o"></i>内存模型</a>
+      </li>
+    
+      <li>
+        <a href="/2018/06/24/单件模式/" ><i class="fa fa-file-o"></i>单件模式</a>
+      </li>
+    
+      <li>
+        <a href="/2018/06/24/恢复drop后的表/" ><i class="fa fa-file-o"></i>恢复drop后的表</a>
+      </li>
+    
+  </ul>
+</div>
+
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://bloom2036.github.io" title="Freemind's Github repository." target="_blank"]);">Bloom</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="http://www.github.com/wzpan" title="My Github account." target="_blank"]);">My Github</a></li>
+	
+		<li><i class="fa fa-linkedin"></i><a href="http://www.linkedin.com/in/hahack" title="My Linkin account." target="_blank"]);">My LinkedIn</a></li>
+	
+	</ul>
+</div>
+
+
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
+
+	
+	
+</div> <!-- row-fluid -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

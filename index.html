@@ -107,6 +107,143 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2018-06-24 </div>
+			<div class="article-title"><a href="/2018/06/24/window删除多余启动项/" >window删除多余启动项</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>Win10 系统删除多余启动项,管理员打开 CMD</p>
+<h4 id="列出存储中的项。"><a href="#列出存储中的项。" class="headerlink" title="列出存储中的项。"></a>列出存储中的项。</h4><p>bcdedit /enum</p>
+<h4 id="删除存储中指定的操作系统项，并从显示顺序中删除该项。"><a href="#删除存储中指定的操作系统项，并从显示顺序中删除该项。" class="headerlink" title="删除存储中指定的操作系统项，并从显示顺序中删除该项。"></a>删除存储中指定的操作系统项，并从显示顺序中删除该项。</h4><p>bcdedit /delete {GUID} /cleanup</p>
+<p>如：下列命令删除存储中指定的操作系统项，并从显示顺序中删除该项:</p>
+<pre><code>bcdedit /delete {ca988616-ad03-11df-a70a-c417fef65b21} /cleanup
+</code></pre>
+	
+	</div>
+  <a type="button" href="/2018/06/24/window删除多余启动项/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-06-24 </div>
+			<div class="article-title"><a href="/2018/06/24/并发编程中的原子性-可见性-有序性/" >并发编程中的原子性-可见性-有序性</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>并发编程中会遇到以下三个问题：原子性问题，可见性问题，有序性问题</p>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>原子性：即一个操作或者多个操作 要么全部执行并且执行的过程不会被任何因素打断，要么就都不执行<br>一个很经典的例子就是银行账户转账问题：<br>　　比如从账户A向账户B转1000元，那么必然包括2个操作：从账户A减去1000元，往账户B加上1000元。</p>
+<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值<br>举个简单的例子，看下面这段代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程1执行的代码</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">i = <span class="number">10</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//线程2执行的代码</span></span><br><span class="line">j = i;</span><br></pre></td></tr></table></figure></p>
+<p>假若执行线程1的是CPU1，执行线程2的是CPU2。由上面的分析可知，当线程1执行 i=10这句时，<br>会先把i的初始值加载到CPU1的高速缓存中，然后赋值为10，那么在CPU1的高速缓存当中i的值变为10了，<br>却没有立即写入到主存当中， 此时线程2执行 j = i，它会先去主存读取i的值并加载到CPU2的缓存当中，<br>注意此时内存当中i的值还是0，那么就会使得j的值为0，而不是10.  这就是可见性问题，线程1对变量i修改了之后，<br>线程2没有立即看到线程1修改的值，这就是缓存不一致性问题</p>
+<h4 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h4><p>有序性：即程序执行的顺序按照代码的先后顺序执行<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;              </span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">i = <span class="number">1</span>;                <span class="comment">//语句1  </span></span><br><span class="line">flag = <span class="keyword">true</span>;          <span class="comment">//语句2</span></span><br></pre></td></tr></table></figure></p>
+<p>处理器为了提高程序运行效率，可能会对输入代码进行优化，它不保证程序中各个语句的执行先后顺序同代码中的顺序一致，<br>但是它会保证程序最终执行结果和代码顺序执行的结果是一致的,这就是指令重排序（Instruction Reorder）<br>语句1和语句2谁先执行对最终的程序结果并没有影响，那么就有可能在执行过程中，语句2先执行而语句1后执行。<br>因为处理器在进行重排序时是会考虑指令之间的数据依赖性，如果一个指令Instruction 2必须用到Instruction 1的结果，<br>那么处理器会保证Instruction 1会在Instruction 2之前执行<br><strong>重排序不会影响单个线程内程序执行的结果，但是多线程会影响</strong><br><code>`</code>Java<br>//线程1:<br>context = loadContext();   //语句1<br>inited = true;             //语句2</p>
+<p>//线程2:<br>while(!inited ){<br>  sleep()<br>}<br>doSomethingwithconfig(context);<br><code>`</code>由于语句1和语句2没有数据依赖性，因此可能会被重排序。假如发生了重排序，在线程1执行过程中先执行语句2，<br>而此是线程2会以为初始化工作已经完成，那么就会跳出while循环，去执行doSomethingwithconfig(context)方法，<br>而此时context并没有被初始化，就会导致程序出错<br><strong>温馨总结：</strong><br>要想并发程序正确地执行，必须要保证原子性、可见性以及有序性。只要有一个没有被保证，就有可能会导致程序运行不正确</p>
+
+	
+	</div>
+  <a type="button" href="/2018/06/24/并发编程中的原子性-可见性-有序性/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-06-24 </div>
+			<div class="article-title"><a href="/2018/06/24/内存模型/" >内存模型</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h4 id="为什么-CPU-有调整缓存"><a href="#为什么-CPU-有调整缓存" class="headerlink" title="为什么 CPU 有调整缓存"></a>为什么 CPU 有调整缓存</h4><p>计算机在执行程序时，每条指令都是在CPU中执行的，而执行指令过程中，势必涉及到数据的读取和写入。<br>由于程序运行过程中的临时数据是存放在主存（物理内存）当中的，由于CPU执行速度很快，<br>而从内存读取数据和向内存写入数据的过程跟CPU执行指令的速度比起来要慢的多，因此如果任何时候对数据<br>的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在CPU里面就有了高速缓存。<br><strong>当程序在运行过程中，会将运算需要的数据从主存复制一份到CPU的高速缓存当中，那么CPU进行计算时就可以<br>直接从它的高速缓存读取数据和向其中写入数据，当运算结束之后，再将高速缓存中的数据刷新到主存当中</strong></p>
+<h4 id="缓存一致性问题"><a href="#缓存一致性问题" class="headerlink" title="缓存一致性问题"></a>缓存一致性问题</h4><p>下面的这段代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i = i + <span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<p>当线程执行这个语句时，会先从主存当中读取i的值，然后复制一份到高速缓存当中，然后CPU执行指令对i进行加1操作，<br>然后将数据写入高速缓存，最后将高速缓存中i最新的值刷新到主存当中。<br>在多线程中可能存在下面一种情况：初始时，两个线程分别读取i的值存入各自所在的CPU的高速缓存当中，<br>然后线程1进行加1操作，然后把i的最新值1写入到内存。此时线程2的高速缓存当中i的值还是0，进行加1操作之后，i的值为1 ，<br>然后线程2把i的值写入内存。最终结果i的值是1，而不是2。这就是缓存一致性问题。通常称这种被多个线程访问的变量为共享变量</p>
+<h4 id="解决缓存不一致性问题"><a href="#解决缓存不一致性问题" class="headerlink" title="解决缓存不一致性问题"></a>解决缓存不一致性问题</h4><p>通常来说有以下2种解决方法：</p>
+<ol>
+<li>通过在总线加LOCK#锁的方式</li>
+<li>通过缓存一致性协议<br>这2种方式都是硬件层面上提供的方式<br><strong>总线上加LOCK:</strong>因为CPU和其他部件进行通信都是通过总线来进行的，如果对总线加LOCK#锁，阻塞了其他CPU对其他部件<br>访问（如内存），从而使得只能有一个CPU能使用这个变量的内存<br><strong>缓存一致性协议:</strong><br>当CPU写数据时，如果发现操作的变量是共享变量，即在其他CPU中也存在该变量的副本，会发出信号通知其他CPU将该变量的<br>缓存行置为无效状态，因此当其他CPU需要读取这个变量时，发现自己缓存中缓存该变量的缓存行是无效的，<br>那么它就会从内存重新读取</li>
+</ol>
+
+	
+	</div>
+  <a type="button" href="/2018/06/24/内存模型/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-06-24 </div>
+			<div class="article-title"><a href="/2018/06/24/单件模式/" >单件模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<ul>
+<li>单件模式确保一个类最多只有一个实例，并提供一个全局访问点</li>
+<li>Java 中实现单件模式需要私有的构造器、一个静态方法和一个静态变量<br>经典单件模式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="comment">// 利用一个静态变量来记录 Singleton类的唯一实例</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance;</span><br><span class="line">    <span class="comment">// 把构造器声明私有的，只有自 Singleton类内才可以调用构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 用 getInstance 方法实例化对象，并返回这个实例</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(uniqueInstance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果多线程执行该代码，会产生多个对象，解决方法如下</p>
+<h4 id="Method1-直接添加-synchronized"><a href="#Method1-直接添加-synchronized" class="headerlink" title="Method1 直接添加 synchronized"></a>Method1 直接添加 synchronized</h4><p>只要把 getInstance()变成同步 synchronized 方法即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(uniqueInstance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Method2-直接实例化"><a href="#Method2-直接实例化" class="headerlink" title="Method2 直接实例化"></a>Method2 直接实例化</h4><p>依赖 JVM 在加载这个类时马上创建此唯一的单件实例，JVM 保证在任何线程访问 uniqueInstance<br>静态变量之前，一定先创建此实例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="comment">// 在静态初始化器(tatic initializer)中创建单件，保证了线程安全</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Method3-双重检查加锁"><a href="#Method3-双重检查加锁" class="headerlink" title="Method3 双重检查加锁"></a>Method3 双重检查加锁</h4><p>在 getInstance()中减少使用同步,利用双重检查加锁(double-checked locking),首先检查<br>是否实例已经创建了，如果未创建才进行同步，这样只有第一次会同步<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 检查实例，如果不存在，就进入同步区块</span></span><br><span class="line">        <span class="keyword">if</span>(uniqueInstance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 只有第一次才会彻底的执行这里的代码</span></span><br><span class="line">            <span class="keyword">synchronized</span>(Singleton.class)&#123;</span><br><span class="line">                <span class="comment">// 进入区块后，再检查一次，如果仍是 null，才创建实例</span></span><br><span class="line">                <span class="keyword">if</span>(uniqueInstance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;    </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>volatile</strong> 关键字确保，当 uniqueInstance 变量被初始化成 Singleton时，多<br>个线程正确地处理 uniqueInstance 变量。</p>
+
+	
+	</div>
+  <a type="button" href="/2018/06/24/单件模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-06-24 </div>
+			<div class="article-title"><a href="/2018/06/24/恢复drop后的表/" >恢复drop后的表</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h4 id="查看回收站中的表"><a href="#查看回收站中的表" class="headerlink" title="查看回收站中的表"></a>查看回收站中的表</h4><p>select object_name,original_name,partition_name,type,ts_name,createtime,droptime from recyclebin;</p>
+<h4 id="恢复表"><a href="#恢复表" class="headerlink" title="恢复表"></a>恢复表</h4><p>flashback table “BIN$hgcd$0” to before drop;</p>
+
+	
+	</div>
+  <a type="button" href="/2018/06/24/恢复drop后的表/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2018-06-04 </div>
 			<div class="article-title"><a href="/2018/06/04/玛剧-心甘情愿/" >玛剧-心甘情愿</a></div>						
 		</h3>
@@ -240,121 +377,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-04-19 </div>
-			<div class="article-title"><a href="/2018/04/19/我爱男保姆-祝福/" >我爱男保姆-祝福</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h4 id="我爱男保姆-祝福"><a href="#我爱男保姆-祝福" class="headerlink" title="我爱男保姆-祝福"></a>我爱男保姆-祝福</h4><p>那些曾给自己带来幸福的人们，难道不是理所应当的从自己这里得到力所能及的祝福吗？<br>那些具备美好品质的人们，就应该获得幸福.</p>
-
-	
-	</div>
-  <a type="button" href="/2018/04/19/我爱男保姆-祝福/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-04-07 </div>
-			<div class="article-title"><a href="/2018/04/07/wait-notify模拟Queue/" >wait/notify模拟Queue</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>BlockingQueue: 它是一个队列，并且支持阻塞的机制，阻塞的放入和得到数据，下面是<br>实现 LinkedBlockingQueue 两个简单的方法 put 和 take<br>put:把 Object 加到 BlockingQueue 里，如果 BlockQueue 没有空间，则调用此方法<br>的线程被阻断，直到 BlockingQueue 里面有空间再继续<br>take: 取走 BlockingQueue 里排在首位的对象，若 BlockingQueue 为空,阻断进入等待<br>状态直到 BlockingQueue 有新的数据被加入<br>
-	
-	</div>
-  <a type="button" href="/2018/04/07/wait-notify模拟Queue/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-01-30 </div>
-			<div class="article-title"><a href="/2018/01/30/天水围的日与夜-做人难与易/" >天水围的日与夜-做人难与易</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h4 id="天水围的日与夜-做人难与易"><a href="#天水围的日与夜-做人难与易" class="headerlink" title="天水围的日与夜-做人难与易"></a>天水围的日与夜-做人难与易</h4><p>做人难，因为人心贪，又想要名利，又想要实惠。<br>做人易，因为顺道而为，不要勉强也没什么会拦住你的去路</p>
-
-	
-	</div>
-  <a type="button" href="/2018/01/30/天水围的日与夜-做人难与易/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-01-23 </div>
-			<div class="article-title"><a href="/2018/01/23/自定义表单验证/" >自定义表单验证</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>iView 组件中 Form 组件基于  async-validator 实现的数据验证, {type: ‘number’, message: ‘请输入数字’, trigger: ‘blur’} ,验证数字<br>时，只能验证一次，需要自定义数字校验器,校验器写在 data() 里面</p>
-<h4 id="form"><a href="#form" class="headerlink" title="form"></a>form</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;Modal v-model=&quot;modalAddParentEquipData&quot; width=&quot;380&quot; @on-ok=&quot;submitAddParentEquipData&quot; title=&quot;添加一级设备&quot;&gt;</span><br><span class="line">    &lt;Form ref=&quot;formItemAddParentEquip&quot; :model=&quot;formItemAddParentEquip&quot; :label-width=&quot;120&quot; :rules=&quot;ruleCustomAdd&quot;&gt;</span><br><span class="line">        &lt;FormItem label=&quot;一级设备名称&quot; prop=&quot;eqname&quot;&gt;</span><br><span class="line">            &lt;Input type=&quot;text&quot; v-model=&quot;formItemAddParentEquip.eqname&quot; placeholder=&quot;输入一级设备&quot; /&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;设备补助(￥/台班)&quot; prop=&quot;equipallowance&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.equipallowance&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;对内价格&quot; prop=&quot;unitmoney&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.unitmoney&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;对外价格&quot; prop=&quot;unitmoneyouter&quot;&gt;</span><br><span class="line">            &lt;Input v-model=&quot;formItemAddParentEquip.unitmoneyouter&quot; placeholder=&quot;Enter something...&quot;&gt;&lt;/Input&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem label=&quot;设备用途&quot; prop=&quot;type&quot;&gt;</span><br><span class="line">            &lt;RadioGroup v-model=&quot;formItemAddParentEquip.type&quot;&gt;</span><br><span class="line">                &lt;Radio label=&quot;0&quot;&gt;普通设备&lt;/Radio&gt;</span><br><span class="line">                &lt;Radio label=&quot;1&quot;&gt;特殊设备(补助公里数)&lt;/Radio&gt;</span><br><span class="line">            &lt;/RadioGroup&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">        &lt;FormItem&gt;</span><br><span class="line">            &lt;Button type=&quot;ghost&quot; @click=&quot;handleReset(&apos;formItemAddParentEquip&apos;)&quot; style=&quot;float: right&quot;&gt;重置&lt;/Button&gt;</span><br><span class="line">        &lt;/FormItem&gt;</span><br><span class="line">    &lt;/Form&gt;</span><br><span class="line">&lt;/Modal&gt;</span><br></pre></td></tr></table></figure>
-	
-	</div>
-  <a type="button" href="/2018/01/23/自定义表单验证/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-01-09 </div>
-			<div class="article-title"><a href="/2018/01/09/定投策略/" >定投策略</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>赚钱的策略不难获得，关键在于对策略的理解与坚持。<br>因为经济总量呈现螺旋式上升，作为经济晴雨表的大盘指数也会震荡上行，所以我在任何时间点买入都是正确的.<br><strong>敲黑板</strong> 基金坚持周四不赎回，周五不申购原则</p>
-<h3 id="华尔街精英推荐的完美定投策略"><a href="#华尔街精英推荐的完美定投策略" class="headerlink" title="华尔街精英推荐的完美定投策略"></a>华尔街精英推荐的完美定投策略</h3><p>初入市场的投资者，只选择一个交易品种：沪深300指数，ETF代码（160706）</p>
-<h4 id="无估值、简单定投策略"><a href="#无估值、简单定投策略" class="headerlink" title="无估值、简单定投策略"></a>无估值、简单定投策略</h4><p>定投交易策略很简单，每个月末，按收盘价买入1000元，其中金额是固定数值，不跟随行情的涨跌而变化<br>机械定投，可以避免选时、选股的难点，获得大幅超越指数的收益</p>
-<h4 id="估值定投法"><a href="#估值定投法" class="headerlink" title="估值定投法"></a>估值定投法</h4><pre><code>巴菲特的老师，格雷厄姆曾经谈到，最优的投资组合就在于：风险投资+固定收益的合理配比。
-反映在市场中，就是牛市中有仓位，且仓位随着行情上涨而不断减少并增加固定收益产品的比例。
-</code></pre><p>熊市中，不断卖出固收产品，不断买入低估的权益投资，增加比例。</p>
-<p>按百年标普的运行规律，市场就在10倍到50倍的市盈率中间波动(市场平均市盈率)<br><a href="http://www.csindex.com.cn/zh-CN" target="_blank" rel="noopener">中证指数有限公司</a> 可以查看，或者<a href="http://www.jiucaishuo.com/?/invest" target="_blank" rel="noopener">韭菜说</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">按照国际市场（港股、美股）等成熟市场的主流规律，10-15倍为市场正常估值，正常定投1000元；</span><br><span class="line">10倍以下为低估区域，定投2000元；15-20倍为高估区域，定投500元；20倍以上为风险区域，每月减持500元</span><br></pre></td></tr></table></figure></p>
-
-	
-	</div>
-  <a type="button" href="/2018/01/09/定投策略/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -405,15 +427,29 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/SQL/">SQL<span>1</span></a></li>
+			<li><a href="/tags/Thread/">Thread<span>2</span></a></li>
+		
+			<li><a href="/tags/Linux/">Linux<span>4</span></a></li>
+		
+			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
+		
+			<li><a href="/tags/POI/">POI<span>1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span>1</span></a></li>
+		
+			<li><a href="/tags/SQL/">SQL<span>2</span></a></li>
+		
+			<li><a href="/tags/Invest/">Invest<span>2</span></a></li>
+		
+			<li><a href="/tags/Java/">Java<span>2</span></a></li>
 		
 			<li><a href="/tags/Vue/">Vue<span>1</span></a></li>
 		
-			<li><a href="/tags/Invest/">Invest<span>1</span></a></li>
+			<li><a href="/tags/Design-Pattern/">Design Pattern<span>3</span></a></li>
 		
-			<li><a href="/tags/Java/">Java<span>3</span></a></li>
+			<li><a href="/tags/Sql/">Sql<span>1</span></a></li>
 		
-			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
+			<li><a href="/tags/Io/">Io<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -427,23 +463,23 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2018/06/04/玛剧-心甘情愿/" ><i class="fa fa-file-o"></i>玛剧-心甘情愿</a>
+        <a href="/2018/06/24/window删除多余启动项/" ><i class="fa fa-file-o"></i>window删除多余启动项</a>
       </li>
     
       <li>
-        <a href="/2018/05/30/装饰者模式-咖啡售卖/" ><i class="fa fa-file-o"></i>装饰者模式-咖啡售卖</a>
+        <a href="/2018/06/24/并发编程中的原子性-可见性-有序性/" ><i class="fa fa-file-o"></i>并发编程中的原子性-可见性-有序性</a>
       </li>
     
       <li>
-        <a href="/2018/05/26/NIO/" ><i class="fa fa-file-o"></i>NIO</a>
+        <a href="/2018/06/24/内存模型/" ><i class="fa fa-file-o"></i>内存模型</a>
       </li>
     
       <li>
-        <a href="/2018/05/26/观察者模式/" ><i class="fa fa-file-o"></i>观察者模式</a>
+        <a href="/2018/06/24/单件模式/" ><i class="fa fa-file-o"></i>单件模式</a>
       </li>
     
       <li>
-        <a href="/2018/05/20/plsqldeveloper创建用户表空间/" ><i class="fa fa-file-o"></i>plsqldeveloper创建用户表空间</a>
+        <a href="/2018/06/24/恢复drop后的表/" ><i class="fa fa-file-o"></i>恢复drop后的表</a>
       </li>
     
   </ul>

@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim常用命令 | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="Vim基本命令123456789101112131415161718192021222324252627[Ctrl]+[f] 屏幕向下移动 一页，相当于 Page Down[Ctrl]+[b] 屏幕向上移动一页，相当于 Page Up 0(数字) 移动到这一列最前面字符处 $  光标移动到最后面字符处 H 光标移动到屏幕最上方那一列的第一个字符(不是整篇文档的第一列) M 光标移动到屏幕的中央那一列的第一个字符 L 光标移动到屏幕的中央那一列的第一个字符(不是整篇文档的最后一列) G 光标移动到最后一列 (功能和 L 相似) /jackie 向光标之下寻找名为 jackie 的字符串 ?jackie 向光标之寻找名为 jackie 的字符串 d1G  删除光标所在到第一列的所有数据 dG  删除光标所在到最后一列的所有数据 d$  删除光标所在到该列的最后一个字符 d0  删除光标所在到该列的最前面一个字符 y1G 复制光标所在列到第一列的所有数据 yG  复制光标所在列到最后一列的所有数据 y0  复制光标所在的那个字符到该列行首的所有数据 y$  复制光标所在的那个字符到该列行末的所有数据 J   将光标所在列与下一列的数据结合成同一列 u   复原前一个动作 [Ctrl]+ r 重做上一个动作 gu 选中区域转为小写 gU 选中区域转为大写 g~ 大小写互调 ctrl + q 进入块可视化模式 gv 进入前一次可视化模式选择的文本 VG 当前光标之后内容全部选中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Vim常用命令"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> Vim常用命令</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="Vim基本命令"><a href="#Vim基本命令" class="headerlink" title="Vim基本命令"></a>Vim基本命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[Ctrl]+[f] 屏幕向下移动 一页，相当于 Page Down</span><br><span class="line">[Ctrl]+[b] 屏幕向上移动一页，相当于 Page Up</span><br><span class="line"> 0(数字) 移动到这一列最前面字符处</span><br><span class="line"> $  光标移动到最后面字符处</span><br><span class="line"> H 光标移动到屏幕最上方那一列的第一个字符(不是整篇文档的第一列)</span><br><span class="line"> M 光标移动到屏幕的中央那一列的第一个字符</span><br><span class="line"> L 光标移动到屏幕的中央那一列的第一个字符(不是整篇文档的最后一列)</span><br><span class="line"> G 光标移动到最后一列 (功能和 L 相似)</span><br><span class="line"> /jackie 向光标之下寻找名为 jackie 的字符串</span><br><span class="line"> ?jackie 向光标之寻找名为 jackie 的字符串</span><br><span class="line"> d1G  删除光标所在到第一列的所有数据</span><br><span class="line"> dG  删除光标所在到最后一列的所有数据</span><br><span class="line"> d$  删除光标所在到该列的最后一个字符</span><br><span class="line"> d0  删除光标所在到该列的最前面一个字符</span><br><span class="line"> y1G 复制光标所在列到第一列的所有数据</span><br><span class="line"> yG  复制光标所在列到最后一列的所有数据</span><br><span class="line"> y0  复制光标所在的那个字符到该列行首的所有数据</span><br><span class="line"> y$  复制光标所在的那个字符到该列行末的所有数据</span><br><span class="line"> J   将光标所在列与下一列的数据结合成同一列</span><br><span class="line"> u   复原前一个动作</span><br><span class="line"> [Ctrl]+ r 重做上一个动作</span><br><span class="line"> gu 选中区域转为小写</span><br><span class="line"> gU 选中区域转为大写</span><br><span class="line"> g~ 大小写互调</span><br><span class="line"> ctrl + q 进入块可视化模式</span><br><span class="line"> gv 进入前一次可视化模式选择的文本</span><br><span class="line"> VG 当前光标之后内容全部选中</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="指令模式"><a href="#指令模式" class="headerlink" title="指令模式"></a>指令模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">:n1,n2s/jackie/roy/g  在第n1 与 n2 列之间寻找 jackie 这个字符串，并将该字符串取代为 roy 字符串</span><br><span class="line">:w [filename]  将编辑的数据储存成另一个文件(相当于另存新文档)</span><br><span class="line">:r [filename]  在编辑的数据中，读入另一个文件的数据，即将[filename]这个文件内容加到游标所在列后面</span><br><span class="line">:n1,n2 w[filename]  将n1 到 n2 的内容储存成 filename 这个文件</span><br><span class="line">:set nu  显示行号</span><br><span class="line">:set nonu  取消行号</span><br><span class="line">:set backup 自动储存备份档</span><br><span class="line">:set nobackup 取消自动备份档</span><br><span class="line">:set autoindent 自动缩排</span><br><span class="line">：%s/String/newString/g  全局替换</span><br></pre></td></tr></table></figure>
+<h3 id="可视模式"><a href="#可视模式" class="headerlink" title="可视模式"></a>可视模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">块选择方式一 ：   v 进入可视模式， ctrl + q 再通过hjkl 进行块选择</span><br><span class="line">块选择方式二： Ctrl + v,可进入可视模式，Shift+ g 进行块选择</span><br></pre></td></tr></table></figure>
+<h2 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h2><p>命令行模式下查看寄存器  <strong>registers</strong>即可</p>
+<h3 id="寄存器分类"><a href="#寄存器分类" class="headerlink" title="寄存器分类"></a>寄存器分类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. 无名（unnamed）寄存器：&quot;&quot;，缓存最后一次操作内容；</span><br><span class="line"></span><br><span class="line">2. 数字（numbered）寄存器：&quot;0 ～ &quot;9，缓存最近操作内容，复制与删除有别, &quot;0寄存器缓存最近一次复制的内容，&quot;1-&quot;9缓存最近9次删除内容</span><br><span class="line"></span><br><span class="line">3. 行内删除（small delete）寄存器：&quot;-，缓存行内删除内容；</span><br><span class="line"></span><br><span class="line">4. 具名（named）寄存器：&quot;a ～ &quot;z或&quot;A - &quot;0Z，指定时可用；</span><br><span class="line"></span><br><span class="line">5. 只读（read-only）寄存器：&quot;:, &quot;., &quot;%, &quot;#，分别缓存最近命令、最近插入文本、当前文件名、当前交替文件名；</span><br><span class="line"></span><br><span class="line">6. 表达式（expression）寄存器：&quot;=，只读，用于执行表达式命令；</span><br><span class="line"></span><br><span class="line">7. 选择及拖拽（selection and drop）寄存器：&quot;*, &quot;+, &quot;~，存取GUI选择文本，可用于与外部应用交互，使用前提为系统剪切板（clipboard）可用；</span><br><span class="line"></span><br><span class="line">8. 黑洞（black hole）寄存器：&quot;_，不缓存操作内容（干净删除）；</span><br><span class="line"></span><br><span class="line">9. 模式寄存器（last search pattern）：&quot;/，缓存最近的搜索模式。</span><br></pre></td></tr></table></figure>
+<h3 id="数字寄存器"><a href="#数字寄存器" class="headerlink" title="数字寄存器"></a>数字寄存器</h3><p>最常用的 从0-9。 如果不指定寄存器的名字，那么删除的内容，vim默认是存到 1 ，复制内容是存到 0 号寄存器。 如果继续删除，那么原来 1 的内容就转到 2，类推，当删除超过9的时候， 原先的 8号数字寄存器就转到9， 原先9的数字寄存器内容就会丢失。</p>
+<h3 id="具名寄存器（字母寄存器）"><a href="#具名寄存器（字母寄存器）" class="headerlink" title="具名寄存器（字母寄存器）"></a>具名寄存器（字母寄存器）</h3><p>完成一个需求：给每一行加上一对 quotation<br>思路：执行一系列操作，把这一系列操作记录为一个具名寄存器<br>normal-mode 环境下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* qa</span><br><span class="line">* ^ (至行首)</span><br><span class="line">* &quot; (插入一个引号)</span><br><span class="line">* $ (至行尾)</span><br><span class="line">* &quot; (插入一个引号)</span><br><span class="line">* 进入 normal-mode</span><br><span class="line">* q</span><br></pre></td></tr></table></figure></p>
+<p>在需要加引号的一行 @a 即可，或者按两个 @@ 可重复执行上一个寄存器过程</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2017/06/18/玛剧-爱情不可理喻/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/06/19/Linux下进入MySql/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-07-19 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Linux/">Linux<span>4</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>

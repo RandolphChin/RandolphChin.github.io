@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vim-setting | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="Vim 文件下的 vimrc配置文件">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="vim-setting"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> vim-setting</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>Vim 文件下的 vimrc配置文件<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Maintainer: </span><br><span class="line">&quot;       Amir Salihefendic</span><br><span class="line">&quot;       http://amix.dk - amix@amix.dk</span><br><span class="line">&quot;</span><br><span class="line">&quot; Version: </span><br><span class="line">&quot;       6.0 - 01/04/17 14:24:34 </span><br><span class="line">&quot;</span><br><span class="line">&quot; Blog_post: </span><br><span class="line">&quot;       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github</span><br><span class="line">&quot;</span><br><span class="line">&quot; Awesome_version:</span><br><span class="line">&quot;       Get this config, nice color schemes and lots of plugins!</span><br><span class="line">&quot;</span><br><span class="line">&quot;       Install the awesome version from:</span><br><span class="line">&quot;</span><br><span class="line">&quot;           https://github.com/amix/vimrc</span><br><span class="line">&quot;</span><br><span class="line">&quot; Syntax_highlighted:</span><br><span class="line">&quot;       http://amix.dk/vim/vimrc.html</span><br><span class="line">&quot;</span><br><span class="line">&quot; Raw_version: </span><br><span class="line">&quot;       http://amix.dk/vim/vimrc.txt</span><br><span class="line">&quot;</span><br><span class="line">&quot; Sections:</span><br><span class="line">&quot;    -&gt; General</span><br><span class="line">&quot;    -&gt; VIM user interface</span><br><span class="line">&quot;    -&gt; Colors and Fonts</span><br><span class="line">&quot;    -&gt; Files and backups</span><br><span class="line">&quot;    -&gt; Text, tab and indent related</span><br><span class="line">&quot;    -&gt; Visual mode related</span><br><span class="line">&quot;    -&gt; Moving around, tabs and buffers</span><br><span class="line">&quot;    -&gt; Status line</span><br><span class="line">&quot;    -&gt; Editing mappings</span><br><span class="line">&quot;    -&gt; vimgrep searching and cope displaying</span><br><span class="line">&quot;    -&gt; Spell checking</span><br><span class="line">&quot;    -&gt; Misc</span><br><span class="line">&quot;    -&gt; Helper functions</span><br><span class="line">&quot;</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; General</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Sets how many lines of history VIM has to remember</span><br><span class="line">set history=500</span><br><span class="line"></span><br><span class="line">&quot; Enable filetype plugins</span><br><span class="line">filetype plugin on</span><br><span class="line">filetype indent on</span><br><span class="line"></span><br><span class="line">&quot; Set to auto read when a file is changed from the outside</span><br><span class="line">set autoread</span><br><span class="line"></span><br><span class="line">&quot; With a map leader it&apos;s possible to do extra key combinations</span><br><span class="line">&quot; like &lt;leader&gt;w saves the current file</span><br><span class="line">let mapleader = &quot;,&quot;</span><br><span class="line">let g:mapleader = &quot;,&quot;</span><br><span class="line"></span><br><span class="line">&quot; Fast saving</span><br><span class="line">nmap &lt;leader&gt;w :w!&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">&quot; :W sudo saves the file </span><br><span class="line">&quot; (useful for handling the permission-denied error)</span><br><span class="line">command W w !sudo tee % &gt; /dev/null</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; VIM user interface</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Set 7 lines to the cursor - when moving vertically using j/k</span><br><span class="line">set so=7</span><br><span class="line"></span><br><span class="line">&quot; Avoid garbled characters in Chinese language windows OS</span><br><span class="line">let $LANG=&apos;en&apos; </span><br><span class="line">set langmenu=en</span><br><span class="line">source $VIMRUNTIME/delmenu.vim</span><br><span class="line">source $VIMRUNTIME/menu.vim</span><br><span class="line"></span><br><span class="line">&quot; Turn on the WiLd menu</span><br><span class="line">set wildmenu</span><br><span class="line"></span><br><span class="line">&quot; Ignore compiled files</span><br><span class="line">set wildignore=*.o,*~,*.pyc</span><br><span class="line">if has(&quot;win16&quot;) || has(&quot;win32&quot;)</span><br><span class="line">    set wildignore+=.git\*,.hg\*,.svn\*</span><br><span class="line">else</span><br><span class="line">    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">&quot;Always show current position</span><br><span class="line">set ruler</span><br><span class="line"></span><br><span class="line">&quot; Height of the command bar</span><br><span class="line">set cmdheight=2</span><br><span class="line"></span><br><span class="line">&quot; A buffer becomes hidden when it is abandoned</span><br><span class="line">set hid</span><br><span class="line"></span><br><span class="line">&quot; Configure backspace so it acts as it should act</span><br><span class="line">set backspace=eol,start,indent</span><br><span class="line">set whichwrap+=&lt;,&gt;,h,l</span><br><span class="line"></span><br><span class="line">&quot; Ignore case when searching</span><br><span class="line">set ignorecase</span><br><span class="line"></span><br><span class="line">&quot; When searching try to be smart about cases </span><br><span class="line">set smartcase</span><br><span class="line"></span><br><span class="line">&quot; Highlight search results</span><br><span class="line">set hlsearch</span><br><span class="line"></span><br><span class="line">&quot; Makes search act like search in modern browsers</span><br><span class="line">set incsearch </span><br><span class="line"></span><br><span class="line">&quot; Don&apos;t redraw while executing macros (good performance config)</span><br><span class="line">set lazyredraw </span><br><span class="line"></span><br><span class="line">&quot; For regular expressions turn magic on</span><br><span class="line">set magic</span><br><span class="line"></span><br><span class="line">&quot; Show matching brackets when text indicator is over them</span><br><span class="line">set showmatch </span><br><span class="line">&quot; How many tenths of a second to blink when matching brackets</span><br><span class="line">set mat=2</span><br><span class="line"></span><br><span class="line">&quot; No annoying sound on errors</span><br><span class="line">set noerrorbells</span><br><span class="line">set novisualbell</span><br><span class="line">set t_vb=</span><br><span class="line">set tm=500</span><br><span class="line"></span><br><span class="line">&quot; Properly disable sound on errors on MacVim</span><br><span class="line">if has(&quot;gui_macvim&quot;)</span><br><span class="line">    autocmd GUIEnter * set vb t_vb=</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot; Add a bit extra margin to the left</span><br><span class="line">set foldcolumn=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Colors and Fonts</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Enable syntax highlighting</span><br><span class="line">syntax enable </span><br><span class="line"></span><br><span class="line">&quot; Enable 256 colors palette in Gnome Terminal</span><br><span class="line">if $COLORTERM == &apos;gnome-terminal&apos;</span><br><span class="line">    set t_Co=256</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">try</span><br><span class="line">    colorscheme desert</span><br><span class="line">catch</span><br><span class="line">endtry</span><br><span class="line"></span><br><span class="line">set background=dark</span><br><span class="line"></span><br><span class="line">&quot; Set extra options when running in GUI mode</span><br><span class="line">if has(&quot;gui_running&quot;)</span><br><span class="line">    set guioptions-=T</span><br><span class="line">    set guioptions-=e</span><br><span class="line">    set t_Co=256</span><br><span class="line">    set guitablabel=%M\ %t</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">&quot; Set utf8 as standard encoding and en_US as the standard language</span><br><span class="line">set encoding=utf8</span><br><span class="line">set number</span><br><span class="line">&quot; Use Unix as the standard file type</span><br><span class="line">set ffs=unix,dos,mac</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Files, backups and undo</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Turn backup off, since most stuff is in SVN, git et.c anyway...</span><br><span class="line">set nobackup</span><br><span class="line">set nowb</span><br><span class="line">set noswapfile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Text, tab and indent related</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Use spaces instead of tabs</span><br><span class="line">set expandtab</span><br><span class="line"></span><br><span class="line">&quot; Be smart when using tabs ;)</span><br><span class="line">set smarttab</span><br><span class="line"></span><br><span class="line">&quot; 1 tab == 4 spaces</span><br><span class="line">set shiftwidth=4</span><br><span class="line">set tabstop=4</span><br><span class="line"></span><br><span class="line">&quot; Linebreak on 500 characters</span><br><span class="line">set lbr</span><br><span class="line">set tw=500</span><br><span class="line"></span><br><span class="line">set ai &quot;Auto indent</span><br><span class="line">set si &quot;Smart indent</span><br><span class="line">set wrap &quot;Wrap lines</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Visual mode related</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Visual mode pressing * or # searches for the current selection</span><br><span class="line">&quot; Super useful! From an idea by Michael Naumann</span><br><span class="line">vnoremap &lt;silent&gt; * :&lt;C-u&gt;call VisualSelection(&apos;&apos;, &apos;&apos;)&lt;CR&gt;/&lt;C-R&gt;=@/&lt;CR&gt;&lt;CR&gt;</span><br><span class="line">vnoremap &lt;silent&gt; # :&lt;C-u&gt;call VisualSelection(&apos;&apos;, &apos;&apos;)&lt;CR&gt;?&lt;C-R&gt;=@/&lt;CR&gt;&lt;CR&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Moving around, tabs, windows and buffers</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Map &lt;Space&gt; to / (search) and Ctrl-&lt;Space&gt; to ? (backwards search)</span><br><span class="line">map &lt;space&gt; /</span><br><span class="line">map &lt;c-space&gt; ?</span><br><span class="line"></span><br><span class="line">&quot; Disable highlight when &lt;leader&gt;&lt;cr&gt; is pressed</span><br><span class="line">map &lt;silent&gt; &lt;leader&gt;&lt;cr&gt; :noh&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">&quot; Smart way to move between windows</span><br><span class="line">map &lt;C-j&gt; &lt;C-W&gt;j</span><br><span class="line">map &lt;C-k&gt; &lt;C-W&gt;k</span><br><span class="line">map &lt;C-h&gt; &lt;C-W&gt;h</span><br><span class="line">map &lt;C-l&gt; &lt;C-W&gt;l</span><br><span class="line"></span><br><span class="line">&quot; Close the current buffer</span><br><span class="line">map &lt;leader&gt;bd :Bclose&lt;cr&gt;:tabclose&lt;cr&gt;gT</span><br><span class="line"></span><br><span class="line">&quot; Close all the buffers</span><br><span class="line">map &lt;leader&gt;ba :bufdo bd&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">map &lt;leader&gt;l :bnext&lt;cr&gt;</span><br><span class="line">map &lt;leader&gt;h :bprevious&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">&quot; Useful mappings for managing tabs</span><br><span class="line">map &lt;leader&gt;tn :tabnew&lt;cr&gt;</span><br><span class="line">map &lt;leader&gt;to :tabonly&lt;cr&gt;</span><br><span class="line">map &lt;leader&gt;tc :tabclose&lt;cr&gt;</span><br><span class="line">map &lt;leader&gt;tm :tabmove </span><br><span class="line">map &lt;leader&gt;t&lt;leader&gt; :tabnext </span><br><span class="line"></span><br><span class="line">&quot; Let &apos;tl&apos; toggle between this and the last accessed tab</span><br><span class="line">let g:lasttab = 1</span><br><span class="line">nmap &lt;Leader&gt;tl :exe &quot;tabn &quot;.g:lasttab&lt;CR&gt;</span><br><span class="line">au TabLeave * let g:lasttab = tabpagenr()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot; Opens a new tab with the current buffer&apos;s path</span><br><span class="line">&quot; Super useful when editing files in the same directory</span><br><span class="line">map &lt;leader&gt;te :tabedit &lt;c-r&gt;=expand(&quot;%:p:h&quot;)&lt;cr&gt;/</span><br><span class="line"></span><br><span class="line">&quot; Switch CWD to the directory of the open buffer</span><br><span class="line">map &lt;leader&gt;cd :cd %:p:h&lt;cr&gt;:pwd&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">&quot; Specify the behavior when switching between buffers </span><br><span class="line">try</span><br><span class="line">  set switchbuf=useopen,usetab,newtab</span><br><span class="line">  set stal=2</span><br><span class="line">catch</span><br><span class="line">endtry</span><br><span class="line"></span><br><span class="line">&quot; Return to last edit position when opening files (You want this!)</span><br><span class="line">au BufReadPost * if line(&quot;&apos;\&quot;&quot;) &gt; 1 &amp;&amp; line(&quot;&apos;\&quot;&quot;) &lt;= line(&quot;$&quot;) | exe &quot;normal! g&apos;\&quot;&quot; | endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Status line</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Always show the status line</span><br><span class="line">set laststatus=2</span><br><span class="line"></span><br><span class="line">&quot; Format the status line</span><br><span class="line">set statusline=\ %&#123;HasPaste()&#125;%F%m%r%h\ %w\ \ CWD:\ %r%&#123;getcwd()&#125;%h\ \ \ Line:\ %l\ \ Column:\ %c</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Editing mappings</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Remap VIM 0 to first non-blank character</span><br><span class="line">map 0 ^</span><br><span class="line"></span><br><span class="line">&quot; Move a line of text using ALT+[jk] or Command+[jk] on mac</span><br><span class="line">nmap &lt;M-j&gt; mz:m+&lt;cr&gt;`z</span><br><span class="line">nmap &lt;M-k&gt; mz:m-2&lt;cr&gt;`z</span><br><span class="line">vmap &lt;M-j&gt; :m&apos;&gt;+&lt;cr&gt;`&lt;my`&gt;mzgv`yo`z</span><br><span class="line">vmap &lt;M-k&gt; :m&apos;&lt;-2&lt;cr&gt;`&gt;my`&lt;mzgv`yo`z</span><br><span class="line"></span><br><span class="line">if has(&quot;mac&quot;) || has(&quot;macunix&quot;)</span><br><span class="line">  nmap &lt;D-j&gt; &lt;M-j&gt;</span><br><span class="line">  nmap &lt;D-k&gt; &lt;M-k&gt;</span><br><span class="line">  vmap &lt;D-j&gt; &lt;M-j&gt;</span><br><span class="line">  vmap &lt;D-k&gt; &lt;M-k&gt;</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">&quot; Delete trailing white space on save, useful for some filetypes ;)</span><br><span class="line">fun! CleanExtraSpaces()</span><br><span class="line">    let save_cursor = getpos(&quot;.&quot;)</span><br><span class="line">    let old_query = getreg(&apos;/&apos;)</span><br><span class="line">    silent! %s/\s\+$//e</span><br><span class="line">    call setpos(&apos;.&apos;, save_cursor)</span><br><span class="line">    call setreg(&apos;/&apos;, old_query)</span><br><span class="line">endfun</span><br><span class="line"></span><br><span class="line">if has(&quot;autocmd&quot;)</span><br><span class="line">    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Spell checking</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Pressing ,ss will toggle and untoggle spell checking</span><br><span class="line">map &lt;leader&gt;ss :setlocal spell!&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">&quot; Shortcuts using &lt;leader&gt;</span><br><span class="line">map &lt;leader&gt;sn ]s</span><br><span class="line">map &lt;leader&gt;sp [s</span><br><span class="line">map &lt;leader&gt;sa zg</span><br><span class="line">map &lt;leader&gt;s? z=</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Misc</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Remove the Windows ^M - when the encodings gets messed up</span><br><span class="line">noremap &lt;Leader&gt;m mmHmt:%s/&lt;C-V&gt;&lt;cr&gt;//ge&lt;cr&gt;&apos;tzt&apos;m</span><br><span class="line"></span><br><span class="line">&quot; Quickly open a buffer for scribble</span><br><span class="line">map &lt;leader&gt;q :e ~/buffer&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">&quot; Quickly open a markdown buffer for scribble</span><br><span class="line">map &lt;leader&gt;x :e ~/buffer.md&lt;cr&gt;</span><br><span class="line"></span><br><span class="line">&quot; Toggle paste mode on and off</span><br><span class="line">map &lt;leader&gt;pp :setlocal paste!&lt;cr&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; =&gt; Helper functions</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Returns true if paste mode is enabled</span><br><span class="line">function! HasPaste()</span><br><span class="line">    if &amp;paste</span><br><span class="line">        return &apos;PASTE MODE  &apos;</span><br><span class="line">    endif</span><br><span class="line">    return &apos;&apos;</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">&quot; Don&apos;t close window, when deleting a buffer</span><br><span class="line">command! Bclose call &lt;SID&gt;BufcloseCloseIt()</span><br><span class="line">function! &lt;SID&gt;BufcloseCloseIt()</span><br><span class="line">   let l:currentBufNum = bufnr(&quot;%&quot;)</span><br><span class="line">   let l:alternateBufNum = bufnr(&quot;#&quot;)</span><br><span class="line"></span><br><span class="line">   if buflisted(l:alternateBufNum)</span><br><span class="line">     buffer #</span><br><span class="line">   else</span><br><span class="line">     bnext</span><br><span class="line">   endif</span><br><span class="line"></span><br><span class="line">   if bufnr(&quot;%&quot;) == l:currentBufNum</span><br><span class="line">     new</span><br><span class="line">   endif</span><br><span class="line"></span><br><span class="line">   if buflisted(l:currentBufNum)</span><br><span class="line">     execute(&quot;bdelete! &quot;.l:currentBufNum)</span><br><span class="line">   endif</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">function! CmdLine(str)</span><br><span class="line">    exe &quot;menu Foo.Bar :&quot; . a:str</span><br><span class="line">    emenu Foo.Bar</span><br><span class="line">    unmenu Foo</span><br><span class="line">endfunction </span><br><span class="line"></span><br><span class="line">function! VisualSelection(direction, extra_filter) range</span><br><span class="line">    let l:saved_reg = @&quot;</span><br><span class="line">    execute &quot;normal! vgvy&quot;</span><br><span class="line"></span><br><span class="line">    let l:pattern = escape(@&quot;, &quot;\\/.*&apos;$^~[]&quot;)</span><br><span class="line">    let l:pattern = substitute(l:pattern, &quot;\n$&quot;, &quot;&quot;, &quot;&quot;)</span><br><span class="line"></span><br><span class="line">    if a:direction == &apos;gv&apos;</span><br><span class="line">        call CmdLine(&quot;Ack &apos;&quot; . l:pattern . &quot;&apos; &quot; )</span><br><span class="line">    elseif a:direction == &apos;replace&apos;</span><br><span class="line">        call CmdLine(&quot;%s&quot; . &apos;/&apos;. l:pattern . &apos;/&apos;)</span><br><span class="line">    endif</span><br><span class="line"></span><br><span class="line">    let @/ = l:pattern</span><br><span class="line">    let @&quot; = l:saved_reg</span><br><span class="line">endfunction</span><br></pre></td></tr></table></figure></p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2018/01/09/伪类和伪元素区别/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2017/12/30/mysql导入导出/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-01-09 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Linux/">Linux<span>4</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
