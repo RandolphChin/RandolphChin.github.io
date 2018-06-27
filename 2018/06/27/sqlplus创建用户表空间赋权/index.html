@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>sqlplus创建用户表空间赋权 | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="1st CMD进入DBA1sqlplus /nolog
+sqlplus /nolog只是登录进了SQLPLUS,此时并没有登录数据库所以需要再用connect username/password连接上数据库 
+连接 sysdba1conn / as sysdba
+2nd 创建用户1create us">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="sqlplus创建用户表空间赋权"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> sqlplus创建用户表空间赋权</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h4 id="1st-CMD进入DBA"><a href="#1st-CMD进入DBA" class="headerlink" title="1st CMD进入DBA"></a>1st CMD进入DBA</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus /nolog</span><br></pre></td></tr></table></figure>
+<p>sqlplus /nolog只是登录进了SQLPLUS,此时并没有登录数据库<br>所以需要再用connect username/password连接上数据库 </p>
+<h4 id="连接-sysdba"><a href="#连接-sysdba" class="headerlink" title="连接 sysdba"></a>连接 sysdba</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conn / as sysdba</span><br></pre></td></tr></table></figure>
+<h3 id="2nd-创建用户"><a href="#2nd-创建用户" class="headerlink" title="2nd 创建用户"></a>2nd 创建用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user username identified by password;</span><br></pre></td></tr></table></figure>
+<h3 id="3rd-授权"><a href="#3rd-授权" class="headerlink" title="3rd 授权"></a>3rd 授权</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant dba,connect to username;</span><br></pre></td></tr></table></figure>
+<h4 id="4th-创建表空间"><a href="#4th-创建表空间" class="headerlink" title="4th 创建表空间"></a>4th 创建表空间</h4><p>创建表结构时，有时候需要先创建 Tablespaces 表空间，命令如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create tablespace TQDC_DATA</span><br><span class="line">datafile &apos;D:\app\Administrator\oradata\orcl\TQDC_DATA.DBF&apos; size 500M</span><br><span class="line">autoextend on next 100M maxsize unlimited logging</span><br><span class="line">extent management local autoallocate</span><br><span class="line">segment space management auto;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>DATAFILE: 表空间数据文件存放路径</li>
+<li>SIZE: 起初设置为200M</li>
+<li>UNIFORM: 指定区尺寸为128k,如不指定，区尺寸默认为64k<h4 id="5th-表空间分配给用户"><a href="#5th-表空间分配给用户" class="headerlink" title="5th 表空间分配给用户"></a>5th 表空间分配给用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user zzg default tablespace TQDC_DATA;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h4 id="查看表空间的名字及文件所在位置"><a href="#查看表空间的名字及文件所在位置" class="headerlink" title="查看表空间的名字及文件所在位置"></a>查看表空间的名字及文件所在位置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select tablespace_name, file_id, file_name,</span><br><span class="line">round(bytes/(1024*1024),0) total_space</span><br><span class="line">from dba_data_files</span><br><span class="line">order by tablespace_name</span><br></pre></td></tr></table></figure>
+<h4 id="查看当前-schema-下所有表的表名及表占用大小"><a href="#查看当前-schema-下所有表的表名及表占用大小" class="headerlink" title="查看当前 schema 下所有表的表名及表占用大小"></a>查看当前 schema 下所有表的表名及表占用大小</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select segment_name,bytes/1024/1024  from user_segments order by  bytes desc</span><br></pre></td></tr></table></figure>
+<h4 id="查询表空间使用情况"><a href="#查询表空间使用情况" class="headerlink" title="查询表空间使用情况"></a>查询表空间使用情况</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select a.tablespace_name,a.bytes/1024/1024 &quot;sum MB&quot;,</span><br><span class="line">(a.bytes-b.bytes)/1024/1024 &quot;used MB&quot;,b.bytes/1024/1024 &quot;free MB&quot;,</span><br><span class="line">round (((a.bytes-b.bytes)/a.bytes)*100,2) &quot;used%&quot; from</span><br><span class="line">(select tablespace_name,sum(bytes) bytes from dba_data_files group by tablespace_name) a,</span><br><span class="line">(select tablespace_name,sum(bytes) bytes,max (bytes) largest from dba_free_space group by tablespace_name)b</span><br><span class="line">where a.tablespace_name=b.tablespace_name</span><br><span class="line">order by ((a.bytes-b.bytes)/a.bytes) desc;</span><br></pre></td></tr></table></figure>
+<h4 id="Method-1-增大所需表空间大小"><a href="#Method-1-增大所需表空间大小" class="headerlink" title="Method 1 增大所需表空间大小"></a>Method 1 增大所需表空间大小</h4><p>语法： alter database datafile ‘表空间位置’resize 新的尺寸<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database datafile &apos;\oracle\oradata\anita_2008.dbf&apos; resize 4000m</span><br></pre></td></tr></table></figure></p>
+<h4 id="Method-2-增加数据文件个数"><a href="#Method-2-增加数据文件个数" class="headerlink" title="Method 2 增加数据文件个数"></a>Method 2 增加数据文件个数</h4><p>语法： alter tablespace 表空间名称 add datafile ‘新的数据文件地址’ size 数据文件大小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter tablespace YOUR_TABLESPECA_NAME</span><br><span class="line"> add datafile &apos;\oracle\oradata\anita_2010.dbf&apos; size 1000m</span><br></pre></td></tr></table></figure></p>
+<h4 id="Method-3表空间自动扩展"><a href="#Method-3表空间自动扩展" class="headerlink" title="Method 3表空间自动扩展"></a>Method 3表空间自动扩展</h4><p>语法： alter database datafile ‘数据文件位置’ autoextend on next 自动扩展大小 maxsize 最大扩展大小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter database datafile &apos;\oracle\oradata\anita_2008.dbf&apos;</span><br><span class="line">  autoextend on next 100m maxsize 10000m</span><br></pre></td></tr></table></figure></p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2018/06/25/调用Http服务/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-06-27 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/SQL/">SQL<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
