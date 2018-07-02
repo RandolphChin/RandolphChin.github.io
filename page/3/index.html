@@ -149,6 +149,56 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2018-01-09 </div>
+			<div class="article-title"><a href="/2018/01/09/explain优化SQL/" >explain优化SQL</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>explain显示了mysql如何使用索引来处理select语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句。<br>格式： explain  your_SQL<br>内容 Header 如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id  select_type  table  type possible_key   key key_len  ref  filtered Extra</span><br></pre></td></tr></table></figure></p>
+<h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>SELECT识别符。这是SELECT查询序列号,查询序号即为sql语句执行的顺序，SQL从大到小的执行。<br>inner join 查询 则 id 全为1，存在子查询则 id 号越大，优先执行</p>
+<h4 id="select-type"><a href="#select-type" class="headerlink" title="select_type"></a>select_type</h4><p>每个select子句的常用类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) SIMPLE(简单SELECT,不使用UNION或子查询等)</span><br><span class="line"></span><br><span class="line">(2) PRIMARY(查询中若包含任何复杂的子部分,最外层的select被标记为PRIMARY)</span><br><span class="line"></span><br><span class="line">(3) UNION(UNION中的第二个或后面的SELECT语句)</span><br><span class="line"></span><br><span class="line">(4) DEPENDENT UNION(UNION中的第二个或后面的SELECT语句，取决于外面的查询)</span><br><span class="line"></span><br><span class="line">(5) UNION RESULT(UNION的结果)</span><br><span class="line"></span><br><span class="line">(6) SUBQUERY(子查询中的第一个SELECT)</span><br></pre></td></tr></table></figure></p>
+	
+	</div>
+  <a type="button" href="/2018/01/09/explain优化SQL/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-01-01 </div>
+			<div class="article-title"><a href="/2018/01/01/axios不能获取属性data值/" >axios不能获取属性data值</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>问题描述：vuejs 中使用axios不能获取属性data的解决方法<br>参考<a href="https://segmentfault.com/a/1190000008772351" target="_blank" rel="noopener">segmentfault</a>这篇文章</p>
+<h4 id="data-属性"><a href="#data-属性" class="headerlink" title="data() 属性"></a>data() 属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        departmentData: [</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="axios-请求"><a href="#axios-请求" class="headerlink" title="axios 请求"></a>axios 请求</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">created () &#123;</span><br><span class="line">    axios.get(<span class="string">'src/mock/data.json'</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.departmentData = response.data.departments.data;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>报错</strong><br>报错：在then 这个里边的赋值方法 this.departmentData = response.data.departments.data; 会报错 this.departmentData is undefined<br>原因：In option functions like data and created, vue binds this to the view-model instance for us,<br>so we can use this.followed, but in the function inside then, this is not bound（then的内部不能使用Vue的实例化的this, 因为在内部 this 没有被绑定）</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">created () &#123;</span><br><span class="line">    <span class="keyword">let</span> dept = <span class="keyword">this</span>;  <span class="comment">// note this</span></span><br><span class="line">    axios.get(<span class="string">'src/mock/data.json'</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        dept.departmentData = response.data.departments.data;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>网上另一种解决方法，使用 ES6 的 箭头函数arrow function，箭头方法可以和父方法共享变量(此方法不奏效）</p>
+
+	
+	</div>
+  <a type="button" href="/2018/01/01/axios不能获取属性data值/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2017-12-30 </div>
 			<div class="article-title"><a href="/2017/12/30/mysql导入导出/" >mysql导入导出</a></div>						
 		</h3>
@@ -280,50 +330,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-06-20 </div>
-			<div class="article-title"><a href="/2017/06/20/玛剧-爱情很难看得透/" >玛剧-爱情很难看得透</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>爱情很难看得透，就算你天天对着它，都不知道什么时候是真，什么时候是假。<br>恋爱的确会令人盲目，因为当你很爱他，就算明知道是假都会当真。</p>
-
-	
-	</div>
-  <a type="button" href="/2017/06/20/玛剧-爱情很难看得透/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017-06-19 </div>
-			<div class="article-title"><a href="/2017/06/19/玛剧-励志故事/" >玛剧-励志故事</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>每一对细水长流的恋人，都经历过同床异梦的阶段。有人熬过去了，但是更多人却选择放弃。<br>白头到老同偕白首，不是传说而是一个励志故事，要开花结果最重要的是耐性</p>
-
-	
-	</div>
-  <a type="button" href="/2017/06/19/玛剧-励志故事/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -374,31 +380,31 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Thread/">Thread<span>2</span></a></li>
-		
-			<li><a href="/tags/WebService/">WebService<span>1</span></a></li>
-		
 			<li><a href="/tags/Java/">Java<span>2</span></a></li>
-		
-			<li><a href="/tags/SQL/">SQL<span>3</span></a></li>
-		
-			<li><a href="/tags/POI/">POI<span>1</span></a></li>
-		
-			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
-		
-			<li><a href="/tags/Invest/">Invest<span>2</span></a></li>
-		
-			<li><a href="/tags/Design-Pattern/">Design Pattern<span>3</span></a></li>
 		
 			<li><a href="/tags/CSS/">CSS<span>1</span></a></li>
 		
-			<li><a href="/tags/Io/">Io<span>1</span></a></li>
+			<li><a href="/tags/Thread/">Thread<span>2</span></a></li>
+		
+			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
+		
+			<li><a href="/tags/Vue/">Vue<span>2</span></a></li>
+		
+			<li><a href="/tags/WebService/">WebService<span>1</span></a></li>
+		
+			<li><a href="/tags/POI/">POI<span>1</span></a></li>
 		
 			<li><a href="/tags/Linux/">Linux<span>4</span></a></li>
 		
-			<li><a href="/tags/Sql/">Sql<span>1</span></a></li>
+			<li><a href="/tags/Design-Pattern/">Design Pattern<span>3</span></a></li>
 		
-			<li><a href="/tags/Vue/">Vue<span>1</span></a></li>
+			<li><a href="/tags/Invest/">Invest<span>2</span></a></li>
+		
+			<li><a href="/tags/Io/">Io<span>1</span></a></li>
+		
+			<li><a href="/tags/SQL/">SQL<span>4</span></a></li>
+		
+			<li><a href="/tags/Sql/">Sql<span>1</span></a></li>
 		
 		 
 		</ul>

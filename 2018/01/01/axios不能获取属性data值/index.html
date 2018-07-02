@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>mysql导入导出 | Hexo</title>
+  <title>axios不能获取属性data值 | Hexo</title>
   <meta name="author" content="John Doe">
   
-  <meta name="description" content="进入 mysql格式： mysql -u 用户名 -p 用户密码1mysql - u root -p root
-查看数据库查看 Mysql 所有的数据库1show databases;
-如果要查看某一具体数据库，格式  use 数据库名 ，for example : use xingxing
-导入导">
+  <meta name="description" content="问题描述：vuejs 中使用axios不能获取属性data的解决方法参考segmentfault这篇文章
+data() 属性12345data () &amp;#123;    return &amp;#123;        departmentData: [    &amp;#125; &amp;#125;
+axios 请求1">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="mysql导入导出"/>
+  <meta property="og:title" content="axios不能获取属性data值"/>
   <meta property="og:site_name" content="Hexo"/>
 
   
@@ -94,7 +93,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> mysql导入导出</h1>
+			<h1 class="title title-inverse "> axios不能获取属性data值</h1>
 		</div>		
 	
 
@@ -114,10 +113,12 @@
 	<div class="mypage">		
 	  		
 
-	  <h3 id="进入-mysql"><a href="#进入-mysql" class="headerlink" title="进入 mysql"></a>进入 mysql</h3><p>格式： mysql -u 用户名 -p 用户密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql - u root -p root</span><br></pre></td></tr></table></figure></p>
-<h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><p>查看 Mysql 所有的数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure></p>
-<p>如果要查看某一具体数据库，格式  use 数据库名 ，for example : use xingxing</p>
-<h3 id="导入导出数据为-SQL-文件"><a href="#导入导出数据为-SQL-文件" class="headerlink" title="导入导出数据为 SQL 文件"></a>导入导出数据为 SQL 文件</h3><p>例如： mysqldump -u root -p –default-character-set=utf8 xingxing &gt;/usr/local/xingxing.sql<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql导出数据，mysqldump -u root -p --default-character-set=utf8 数据库名 &gt; sql文件路径</span><br><span class="line">mysql导入数据， mysql -u root -p --default-character-set=utf8  数据库名 &lt; sql文件路径</span><br></pre></td></tr></table></figure></p>
+	  <p>问题描述：vuejs 中使用axios不能获取属性data的解决方法<br>参考<a href="https://segmentfault.com/a/1190000008772351" target="_blank" rel="noopener">segmentfault</a>这篇文章</p>
+<h4 id="data-属性"><a href="#data-属性" class="headerlink" title="data() 属性"></a>data() 属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        departmentData: [</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="axios-请求"><a href="#axios-请求" class="headerlink" title="axios 请求"></a>axios 请求</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">created () &#123;</span><br><span class="line">    axios.get(<span class="string">'src/mock/data.json'</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.departmentData = response.data.departments.data;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>报错</strong><br>报错：在then 这个里边的赋值方法 this.departmentData = response.data.departments.data; 会报错 this.departmentData is undefined<br>原因：In option functions like data and created, vue binds this to the view-model instance for us,<br>so we can use this.followed, but in the function inside then, this is not bound（then的内部不能使用Vue的实例化的this, 因为在内部 this 没有被绑定）</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">created () &#123;</span><br><span class="line">    <span class="keyword">let</span> dept = <span class="keyword">this</span>;  <span class="comment">// note this</span></span><br><span class="line">    axios.get(<span class="string">'src/mock/data.json'</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        dept.departmentData = response.data.departments.data;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>网上另一种解决方法，使用 ES6 的 箭头函数arrow function，箭头方法可以和父方法共享变量(此方法不奏效）</p>
 	  
 	</div>
 
@@ -127,13 +128,13 @@
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2018/01/01/axios不能获取属性data值/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2018/01/09/explain优化SQL/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2017/11/30/玛剧-福气/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2017/12/30/mysql导入导出/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -184,7 +185,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2017-12-30 
+	2018-01-01 
 	</div>
 	
 
@@ -197,7 +198,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Linux/">Linux<span>4</span></a></li>
+  <li><a href="/tags/Vue/">Vue<span>2</span></a></li>
     </ul>
 	</div>
 		

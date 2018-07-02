@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>explain优化SQL | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="explain显示了mysql如何使用索引来处理select语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句。格式： explain  your_SQL内容 Header 如下1id  select_type  table  type possible_key   key key_len  ref  filtered Extra
+idSELECT识别符。这是SELECT查询序列号,查询序号即为sql语句执行的顺序，SQL从大到小的执行。inner join 查询 则 id 全为1，存在子查询则 id 号越大，优先执行
+select_type每个select子句的常用类型1234567891011(1) SIMPLE(简单SELECT,不使用UNION或子查询等)(2) PRIMARY(查询中若包含任何复杂的子部分,最外层的select被标记为PRIMARY)(3) UNION(UNION中的第二个或后面的SELECT语句)(4) DEPENDENT UNION(UNION中的第二个或后面的SELECT语句，取决于外面的查询)(5) UNION RESULT(UNION的结果)(6) SUBQUERY(子查询中的第一个SELECT)">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="explain优化SQL"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> explain优化SQL</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>explain显示了mysql如何使用索引来处理select语句以及连接表。可以帮助选择更好的索引和写出更优化的查询语句。<br>格式： explain  your_SQL<br>内容 Header 如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id  select_type  table  type possible_key   key key_len  ref  filtered Extra</span><br></pre></td></tr></table></figure></p>
+<h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>SELECT识别符。这是SELECT查询序列号,查询序号即为sql语句执行的顺序，SQL从大到小的执行。<br>inner join 查询 则 id 全为1，存在子查询则 id 号越大，优先执行</p>
+<h4 id="select-type"><a href="#select-type" class="headerlink" title="select_type"></a>select_type</h4><p>每个select子句的常用类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) SIMPLE(简单SELECT,不使用UNION或子查询等)</span><br><span class="line"></span><br><span class="line">(2) PRIMARY(查询中若包含任何复杂的子部分,最外层的select被标记为PRIMARY)</span><br><span class="line"></span><br><span class="line">(3) UNION(UNION中的第二个或后面的SELECT语句)</span><br><span class="line"></span><br><span class="line">(4) DEPENDENT UNION(UNION中的第二个或后面的SELECT语句，取决于外面的查询)</span><br><span class="line"></span><br><span class="line">(5) UNION RESULT(UNION的结果)</span><br><span class="line"></span><br><span class="line">(6) SUBQUERY(子查询中的第一个SELECT)</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>显示这一行的数据是关于哪张表的</p>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>表示MySQL在表中找到所需行的方式，又称“访问类型”。<br>常用的类型有： ALL, index,  range, ref, eq_ref, const, system, NULL（从左到右，性能从差到好）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ALL：Full Table Scan， MySQL将遍历全表以找到匹配的行</span><br><span class="line"></span><br><span class="line">index: Full Index Scan，index与ALL区别为index类型只遍历索引树</span><br><span class="line"></span><br><span class="line">range:只检索给定范围的行，使用一个索引来选择行</span><br><span class="line"></span><br><span class="line">ref: 表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值</span><br><span class="line"></span><br><span class="line">eq_ref: 类似ref，区别就在使用的索引是唯一索引，对于每个索引键值，表中只有一条记录匹配，简单来说，就是多表连接中使用primary key或者 unique key作为关联条件</span><br><span class="line"></span><br><span class="line">const、system: 当MySQL对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中，MySQL就能将该查询转换为一个常量,system是const类型的特例，当查询的表只有一行的情况下，使用system</span><br><span class="line"></span><br><span class="line">NULL: MySQL在优化过程中分解语句，执行时甚至不用访问表或索引，例如从一个索引列里选取最小值可以通过单独索引查找完成。</span><br></pre></td></tr></table></figure></p>
+<h4 id="possible-keys"><a href="#possible-keys" class="headerlink" title="possible_keys"></a>possible_keys</h4><p>指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用</p>
+<h4 id="key"><a href="#key" class="headerlink" title="key"></a>key</h4><p>key列显示MySQL实际决定使用的键（索引）,如果没有选择索引，键是NULL</p>
+<h4 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Using where:</span><br><span class="line">    列数据是从仅仅使用了索引中的信息而没有读取实际的行动的表返回的，这发生在对表的全部的请求列都是同一个索引的部分的时候，</span><br><span class="line">    表示mysql服务器将在存储引擎检索行后再进行过滤</span><br><span class="line"></span><br><span class="line">Using temporary：表示MySQL需要使用临时表来存储结果集，常见于排序和分组查询</span><br><span class="line"></span><br><span class="line">Using filesort：MySQL中无法利用索引完成的排序操作称为“文件排序”</span><br><span class="line"></span><br><span class="line">Using joinbuffer：</span><br><span class="line">    改值强调了在获取连接条件时没有使用索引，并且需要连接缓冲区来存储中间结果。</span><br><span class="line">    如果出现了这个值，那应该注意，根据查询的具体情况可能需要添加索引来改进能。</span><br><span class="line"></span><br><span class="line">Impossible where：这个值强调了where语句会导致没有符合条件的行。</span><br><span class="line">Select tables optimized away：这个值意味着仅通过使用索引，优化器可能仅从聚合函数结果中返回一行</span><br></pre></td></tr></table></figure>
+<p>温馨提示：</p>
+<ul>
+<li>EXPLAIN不会告诉你关于触发器、存储过程的信息或用户自定义函数对查询的影响情况</li>
+<li>EXPLAIN不考虑各种Cache</li>
+<li>EXPLAIN不能显示MySQL在执行查询时所作的优化工作</li>
+<li>部分统计信息是估算的，并非精确值</li>
+<li>EXPALIN只能解释SELECT操作，其他操作要重写为SELECT后查看执行计划。</li>
+</ul>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2018/01/09/vim-setting/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2018/01/01/axios不能获取属性data值/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-01-09 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/SQL/">SQL<span>4</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
