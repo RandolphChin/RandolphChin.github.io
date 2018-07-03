@@ -107,6 +107,74 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2018-07-03 </div>
+			<div class="article-title"><a href="/2018/07/03/命令模式/" >命令模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p><strong>命令模式定义</strong>：将动作封装成命令对象，可以使用不请求、队列、或者日志请求来参数化其他对象，<br>即可以随时储存、传递和调用。</p>
+<ul>
+<li>命令模式将发出请求的对象和执行请求的对象解耦</li>
+<li>在被解耦的两者之前是通过命令对象进行沟通的。</li>
+<li>命令对象封装了接收者的一个或一组动作</li>
+<li>调用者通过调用命令对象的 execute() 发出请求，这会使得接收者的动作被调用</li>
+<li>调用者可以接受命令当作参数，甚至在运行时动态地进行</li>
+<li>实际操作时，很常见使用”聪明”命令对象，也就是直接实现了请求，而不是将工作委托给接收者</li>
+<li>命令模式也可以用来实现日志和事务系统<br>命令模式类图如下<br><img src="https://user-images.githubusercontent.com/19374409/42205524-4ddcdcd6-7ed7-11e8-8060-4d3674f74021.png" alt="image"></li>
+</ul>
+<p>天气比较炎热，人去使用遥控器打开空调，这个过程中<br>遥控器相当于 Invoker,<br>空调相当于 Receiver<br>打开或者关闭空调的按钮相当于 ConcreteCommand<br>人使用遥控器这个过程相当于 Client ,client 目的是 user the Invoker，</p>
+<h4 id="命令模式-Java-Demo"><a href="#命令模式-Java-Demo" class="headerlink" title="命令模式 Java Demo"></a>命令模式 Java Demo</h4><p><strong>Command interface</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Command</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Concrete Commands</strong><br>创建两个具体命令对象，开灯命令和关灯命令，命令对象包括接收者及接收者的一个或一组动作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Concrete Command</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LightOnCommand</span> <span class="keyword">implements</span> <span class="title">Command</span></span>&#123;</span><br><span class="line">  <span class="comment">//reference to the light</span></span><br><span class="line">  Light light;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">LightOnCommand</span><span class="params">(Light light)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.light = light;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>&#123;</span><br><span class="line">    light.switchOn();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Concrete Command</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LightOffCommand</span> <span class="keyword">implements</span> <span class="title">Command</span></span>&#123;</span><br><span class="line">  <span class="comment">//reference to the light</span></span><br><span class="line">  Light light;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">LightOffCommand</span><span class="params">(Light light)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.light = light;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>&#123;</span><br><span class="line">    light.switchOff();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Receiver</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//Receiver</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Light</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">boolean</span> on;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">switchOn</span><span class="params">()</span></span>&#123;</span><br><span class="line">    on = <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">switchOff</span><span class="params">()</span></span>&#123;</span><br><span class="line">    on = <span class="keyword">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Invoker</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Invoker</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RemoteControl</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Command command;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommand</span><span class="params">(Command command)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.command = command;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pressButton</span><span class="params">()</span></span>&#123;</span><br><span class="line">    command.execute();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Client</strong><br>set up a client to use the invoker<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Client</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span>    </span>&#123;</span><br><span class="line">    RemoteControl control = <span class="keyword">new</span> RemoteControl();</span><br><span class="line">    Light light = <span class="keyword">new</span> Light();</span><br><span class="line">    Command lightsOn = <span class="keyword">new</span> LightsOnCommand(light);</span><br><span class="line">    Command lightsOff = <span class="keyword">new</span> LightsOffCommand(light);</span><br><span class="line">    <span class="comment">//switch on</span></span><br><span class="line">    control.setCommand(lightsOn);</span><br><span class="line">    control.pressButton();</span><br><span class="line">    <span class="comment">//switch off</span></span><br><span class="line">    control.setCommand(lightsOff);</span><br><span class="line">    control.pressButton();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="命令模式应用之队列请求"><a href="#命令模式应用之队列请求" class="headerlink" title="命令模式应用之队列请求"></a>命令模式应用之队列请求</h4><p>有一个工作队列，在某一端添加实现命令接口的对象，然后另一端则是线程。线程进行下面的动作：<br>从队列中 取出一个命令，调用它的 execute()方法，等待这个调用完成，然后将此命令对象丢弃，<br>再取出下一个命令</p>
+<h4 id="信念模式应用之日志请求"><a href="#信念模式应用之日志请求" class="headerlink" title="信念模式应用之日志请求"></a>信念模式应用之日志请求</h4><p>某些应用需要我们将所有的动作都记录在日志中，并能在系统死机之后通过新增两个方法(store(),load())，<br>重新调用这些动作恢复到之前的状态。<br>操作思路：当我们执行命令的时候，将历史记录(执行的命令对象)利用对象的序列化储存在磁盘中，<br>一旦系统死机，可以将命令对象重新加载，并成批依次调用这些对象的 execute() 方法</p>
+
+	
+	</div>
+  <a type="button" href="/2018/07/03/命令模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-07-03 </div>
+			<div class="article-title"><a href="/2018/07/03/UML类图几种关系/" >UML类图几种关系</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>在UML类图中，常见的有以下几种关系:泛化（Generalization）,  实现（Realization）,关联（Association）,<br>聚合（Aggregation）,组合(Composition)，依赖(Dependency)</p>
+<h4 id="泛化-Generalization"><a href="#泛化-Generalization" class="headerlink" title="泛化(Generalization)"></a>泛化(Generalization)</h4><p><strong>泛化关系</strong>:是一种继承关系,<br><strong>箭头指向</strong>:带三角箭头的实线，箭头指向父类</p>
+<h4 id="实现（Realization"><a href="#实现（Realization" class="headerlink" title="实现（Realization)"></a>实现（Realization)</h4><p><strong>实现关系</strong>：是一种类与接口的关系，表示类是接口所有特征和行为的实现<br><strong>箭头指向</strong>：带三角箭头的虚线，箭头指向接口</p>
+<h4 id="关联（Association）"><a href="#关联（Association）" class="headerlink" title="关联（Association）"></a>关联（Association）</h4><p><strong>关联关系</strong>:是一种拥有的关系,它使一个类知道另一个类的属性和方法；<br>关联可以是双向的，也可以是单向的。双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头。<br><strong>箭头指向</strong>:带普通箭头的实心线，指向被拥有者</p>
+<h4 id="聚合（Aggregation）"><a href="#聚合（Aggregation）" class="headerlink" title="聚合（Aggregation）"></a>聚合（Aggregation）</h4><p><strong>聚合关系</strong>:是整体与部分的关系.如车和轮胎是整体和部分的关系<br><strong>箭头及指向</strong>:带空心菱形的实心线，菱形指向整体</p>
+<h4 id="组合-Composition"><a href="#组合-Composition" class="headerlink" title="组合(Composition)"></a>组合(Composition)</h4><p><strong>组合关系</strong>:是整体与部分的关系.,没有公司就不存在部门, 组合关系是关联关系的一种<br><strong>箭头及指向</strong>:带实心菱形的实线，菱形指向整体</p>
+<h4 id="依赖-Dependency"><a href="#依赖-Dependency" class="headerlink" title="依赖(Dependency)"></a>依赖(Dependency)</h4><p><strong>依赖关系</strong>:是一种使用的关系,所以要尽量不使用双向的互相依赖<br><strong>箭头及指向</strong>:带箭头的虚线，指向被使用者</p>
+<p><strong>各种关系的强弱顺序</strong><br>泛化= 实现&gt; 组合&gt; 聚合&gt; 关联&gt; 依赖</p>
+
+	
+	</div>
+  <a type="button" href="/2018/07/03/UML类图几种关系/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2018-06-27 </div>
 			<div class="article-title"><a href="/2018/06/27/sqlplus创建用户表空间赋权/" >sqlplus创建用户表空间赋权</a></div>						
 		</h3>
@@ -324,63 +392,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-05-30 </div>
-			<div class="article-title"><a href="/2018/05/30/装饰者模式-咖啡售卖/" >装饰者模式-咖啡售卖</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>装饰者模式：动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。<br>遵循的设计原则是：类应该对扩展开放，对修改关闭</p>
-<ol>
-<li>装饰者和被装饰对象有相同的类型</li>
-<li>可以用一个或多个装饰者包装一个对象</li>
-<li>在任何需要原始对象(被包装的)的场合，可以用装饰过的对象代替</li>
-<li><p>对象可以在任何时候被装饰，可以在运行时动态地、不限量地用装饰者来装饰对象</p>
-<p> <strong>咖啡种类</strong></p>
-<p> 综合 HouseBlend<br> 深焙 DarkRoast<br> 低咖啡因 Decaf<br> 浓缩    Espresso</p>
-<p> <strong>咖啡配料</strong></p>
-<p>牛奶 Milk<br>摩卡 MoCha<br>豆浆 Soy<br>奶泡 Whip</p>
-</li>
-</ol>
-<p>Bevarage抽象类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Bevarage 是一个抽象类，有两个方法 getgetDescription() 及 cost()</span></span><br><span class="line"><span class="comment"> * Created by randolph on 2018/5/29.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    String description = <span class="string">"Unknow Beverage"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-	
-	</div>
-  <a type="button" href="/2018/05/30/装饰者模式-咖啡售卖/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-05-26 </div>
-			<div class="article-title"><a href="/2018/05/26/NIO/" >NIO</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p> 关于 Java NIO 的详解 <a href="https://blog.csdn.net/suifeng3051/article/details/48160753" target="_blank" rel="noopener">CSDN</a> 上有详细解释<br> NIO即新的输入输出，这个库是在JDK1.4中才引入的。它在标准java代码中提供了高速的面向块的IO操作</p>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ol>
-<li>IO 输入输出<br> 使用流的方式来处理IO，所有的IO都被视作是单个字节的移动，通过stream对象一次移动一个字节，<br>流IO负责把对象与字节的相互转换</li>
-<li>NIO (NEW IO)<br> 这个库是在JDK1.4中引入的。NIO和IO有相同的作用和目的，但实现方式不同，NIO主要用到的是块，<br>所以NIO的效率要比IO高很多<h3 id="流与块的比较"><a href="#流与块的比较" class="headerlink" title="流与块的比较"></a>流与块的比较</h3>NIO和IO最大的区别是数据打包和传输方式。IO是以流的方式处理数据，而NIO是以块的方式处理数据<br><strong>面向流的IO</strong> 一次一个字节的处理数据，一个输入流产生一个字节，一个输出流就消费一个字节,通常处理的很慢<br><strong>面向块的IO</strong> 系统以块的形式处理数据。每一个操作都在一步中产生或消费一个数据块。按块要比按流快的多
-	
-	</div>
-  <a type="button" href="/2018/05/26/NIO/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -431,29 +442,29 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Sql/">Sql<span>1</span></a></li>
-		
-			<li><a href="/tags/Design-Pattern/">Design Pattern<span>3</span></a></li>
-		
-			<li><a href="/tags/Vue/">Vue<span>2</span></a></li>
+			<li><a href="/tags/Design-Pattern/">Design Pattern<span>4</span></a></li>
 		
 			<li><a href="/tags/SQL/">SQL<span>4</span></a></li>
 		
-			<li><a href="/tags/Java/">Java<span>2</span></a></li>
+			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
+		
+			<li><a href="/tags/Vue/">Vue<span>2</span></a></li>
 		
 			<li><a href="/tags/Thread/">Thread<span>2</span></a></li>
 		
-			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
-		
-			<li><a href="/tags/CSS/">CSS<span>1</span></a></li>
-		
-			<li><a href="/tags/Invest/">Invest<span>2</span></a></li>
-		
 			<li><a href="/tags/POI/">POI<span>1</span></a></li>
+		
+			<li><a href="/tags/Java/">Java<span>3</span></a></li>
 		
 			<li><a href="/tags/Linux/">Linux<span>4</span></a></li>
 		
+			<li><a href="/tags/Sql/">Sql<span>1</span></a></li>
+		
+			<li><a href="/tags/CSS/">CSS<span>1</span></a></li>
+		
 			<li><a href="/tags/WebService/">WebService<span>1</span></a></li>
+		
+			<li><a href="/tags/Invest/">Invest<span>2</span></a></li>
 		
 			<li><a href="/tags/Io/">Io<span>1</span></a></li>
 		
@@ -469,6 +480,14 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/07/03/命令模式/" ><i class="fa fa-file-o"></i>命令模式</a>
+      </li>
+    
+      <li>
+        <a href="/2018/07/03/UML类图几种关系/" ><i class="fa fa-file-o"></i>UML类图几种关系</a>
+      </li>
+    
+      <li>
         <a href="/2018/06/27/sqlplus创建用户表空间赋权/" ><i class="fa fa-file-o"></i>sqlplus创建用户表空间赋权</a>
       </li>
     
@@ -478,14 +497,6 @@
     
       <li>
         <a href="/2018/06/24/window删除多余启动项/" ><i class="fa fa-file-o"></i>window删除多余启动项</a>
-      </li>
-    
-      <li>
-        <a href="/2018/06/24/并发编程中的原子性-可见性-有序性/" ><i class="fa fa-file-o"></i>并发编程中的原子性-可见性-有序性</a>
-      </li>
-    
-      <li>
-        <a href="/2018/06/24/内存模型/" ><i class="fa fa-file-o"></i>内存模型</a>
       </li>
     
   </ul>

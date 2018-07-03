@@ -3,19 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>window删除多余启动项 | Hexo</title>
+  <title>UML类图几种关系 | Hexo</title>
   <meta name="author" content="John Doe">
   
-  <meta name="description" content="Win10 系统删除多余启动项,管理员打开 CMD
-列出存储中的项。bcdedit /enum
-删除存储中指定的操作系统项，并从显示顺序中删除该项。bcdedit /delete {GUID} /cleanup
-如：下列命令删除存储中指定的操作系统项，并从显示顺序中删除该项:
-bcdedit /de">
+  <meta name="description" content="在UML类图中，常见的有以下几种关系:泛化（Generalization）,  实现（Realization）,关联（Association）,聚合（Aggregation）,组合(Composition)，依赖(Dependency)
+泛化(Generalization)泛化关系:是一种继承关系,">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="window删除多余启动项"/>
+  <meta property="og:title" content="UML类图几种关系"/>
   <meta property="og:site_name" content="Hexo"/>
 
   
@@ -95,7 +92,7 @@ bcdedit /de">
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> window删除多余启动项</h1>
+			<h1 class="title title-inverse "> UML类图几种关系</h1>
 		</div>		
 	
 
@@ -115,12 +112,15 @@ bcdedit /de">
 	<div class="mypage">		
 	  		
 
-	  <p>Win10 系统删除多余启动项,管理员打开 CMD</p>
-<h4 id="列出存储中的项。"><a href="#列出存储中的项。" class="headerlink" title="列出存储中的项。"></a>列出存储中的项。</h4><p>bcdedit /enum</p>
-<h4 id="删除存储中指定的操作系统项，并从显示顺序中删除该项。"><a href="#删除存储中指定的操作系统项，并从显示顺序中删除该项。" class="headerlink" title="删除存储中指定的操作系统项，并从显示顺序中删除该项。"></a>删除存储中指定的操作系统项，并从显示顺序中删除该项。</h4><p>bcdedit /delete {GUID} /cleanup</p>
-<p>如：下列命令删除存储中指定的操作系统项，并从显示顺序中删除该项:</p>
-<pre><code>bcdedit /delete {ca988616-ad03-11df-a70a-c417fef65b21} /cleanup
-</code></pre>	  
+	  <p>在UML类图中，常见的有以下几种关系:泛化（Generalization）,  实现（Realization）,关联（Association）,<br>聚合（Aggregation）,组合(Composition)，依赖(Dependency)</p>
+<h4 id="泛化-Generalization"><a href="#泛化-Generalization" class="headerlink" title="泛化(Generalization)"></a>泛化(Generalization)</h4><p><strong>泛化关系</strong>:是一种继承关系,<br><strong>箭头指向</strong>:带三角箭头的实线，箭头指向父类</p>
+<h4 id="实现（Realization"><a href="#实现（Realization" class="headerlink" title="实现（Realization)"></a>实现（Realization)</h4><p><strong>实现关系</strong>：是一种类与接口的关系，表示类是接口所有特征和行为的实现<br><strong>箭头指向</strong>：带三角箭头的虚线，箭头指向接口</p>
+<h4 id="关联（Association）"><a href="#关联（Association）" class="headerlink" title="关联（Association）"></a>关联（Association）</h4><p><strong>关联关系</strong>:是一种拥有的关系,它使一个类知道另一个类的属性和方法；<br>关联可以是双向的，也可以是单向的。双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头。<br><strong>箭头指向</strong>:带普通箭头的实心线，指向被拥有者</p>
+<h4 id="聚合（Aggregation）"><a href="#聚合（Aggregation）" class="headerlink" title="聚合（Aggregation）"></a>聚合（Aggregation）</h4><p><strong>聚合关系</strong>:是整体与部分的关系.如车和轮胎是整体和部分的关系<br><strong>箭头及指向</strong>:带空心菱形的实心线，菱形指向整体</p>
+<h4 id="组合-Composition"><a href="#组合-Composition" class="headerlink" title="组合(Composition)"></a>组合(Composition)</h4><p><strong>组合关系</strong>:是整体与部分的关系.,没有公司就不存在部门, 组合关系是关联关系的一种<br><strong>箭头及指向</strong>:带实心菱形的实线，菱形指向整体</p>
+<h4 id="依赖-Dependency"><a href="#依赖-Dependency" class="headerlink" title="依赖(Dependency)"></a>依赖(Dependency)</h4><p><strong>依赖关系</strong>:是一种使用的关系,所以要尽量不使用双向的互相依赖<br><strong>箭头及指向</strong>:带箭头的虚线，指向被使用者</p>
+<p><strong>各种关系的强弱顺序</strong><br>泛化= 实现&gt; 组合&gt; 聚合&gt; 关联&gt; 依赖</p>
+	  
 	</div>
 
 	<div>
@@ -129,13 +129,13 @@ bcdedit /de">
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2018/06/25/调用Http服务/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2018/07/03/命令模式/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2018/06/24/并发编程中的原子性-可见性-有序性/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2018/06/27/sqlplus创建用户表空间赋权/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -186,7 +186,7 @@ bcdedit /de">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2018-06-24 
+	2018-07-03 
 	</div>
 	
 
