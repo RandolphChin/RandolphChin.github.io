@@ -107,6 +107,65 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2018-07-04 </div>
+			<div class="article-title"><a href="/2018/07/04/适配器与外观模式/" >适配器与外观模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>适配器模式：将一个类的接口，转换成客户期望的另一个接口，适配器让原本接口不兼容的类可以合作无间。<br>在中国使用美国制造的笔记本电脑，需要使用一个交流电的适配器<br>客户使用适配器的过程如下：</p>
+<ol>
+<li>客户通过目标接口调用适配器的方法对适配器发出请求</li>
+<li>适配器使用被适配者接口把请求转换成被适配者的一个或多个调用接口</li>
+<li>客户接收到调用的结果，但并未察觉这一切是适配器在起转换作用</li>
+</ol>
+<p><strong>外观模式(Facade-Pattern)</strong>：提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层<br>接口，让子系统更容易使用。提供简化的接口的同时，依然把系统完整的功能暴露出来，将客户实现从子系统中解耦<br><strong>适配器模式与外观模式区别</strong>：适配器意图是改变接口符合客户的期望(将接口转换成不同接口)，<br>而外观模式的意图是提供子系统的一个简化接口(简化接口)<br><strong>适配器模式与外观模式相同点</strong>：都可以包装许多类</p>
+<p>家庭影院观看电影，困难的方式是需要打开相关的许多子系统<br>将灯光调暗 -&gt; 放下屏幕 -&gt; 打开投影机 -&gt; 将投影机输入切换到DVD -&gt;将投影机设置在宽屏模式 -&gt; 打开功放<br>-&gt; 功放设置为环绕立体声 -&gt; 打开 DVD 播放器 -&gt; 开始播放 DVD<br>外观模式是通过简单的方式将这些任务写成类和方法进行封装，达到简化目的</p>
+<p><strong>要点</strong><br>当需要使用一个现在的类而其接口并不符合你的需要时，就使用适配器<br>当需要简化并统一一个很大的接口或者一群复杂的接口时，使用外观<br>适配器改变接口以符合靠窗户的期望<br>外观将客户从一个复杂的子系统中解耦<br>实现一个外观，需要将子系统组合进外观中，然后将工作委托给子系统执行<br><strong>适配器模式与装饰者模式与外观模式区别</strong>:<br>适配器将一个对象包装起来以改变接口；装饰者将一个对象包装起来以增加新的行为和责任；外观将一群对象<br>“包装”起来以简化其接口<br>
+	
+	</div>
+  <a type="button" href="/2018/07/04/适配器与外观模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018-07-04 </div>
+			<div class="article-title"><a href="/2018/07/04/模版方法模式/" >模版方法模式</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p><strong>模板方法模式</strong>：在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。<br>模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤(允许子类提供一个或多个实现)。</p>
+<p>好莱坞原则和依赖倒置原则之前的关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">依赖倒置原则是尽量避免使用具体类，而多使用抽象。</span><br><span class="line">好莱坞原则是用在创建框架或组件上的一种技巧，好让低层组件能够被挂钩进计算中，而且又不会让高层</span><br><span class="line">组件依赖低层组件。创建一个有弹性的设计，允许低层结构能够互相操作、而又防止其他类太过依赖它们。</span><br><span class="line">两者的目标都在于解耦，但是依赖倒置原则更加注重如何在设计中避免依赖。</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>模板方法定义了算法的步骤，把这些步骤的实现延迟到子类</li>
+<li>模板方法模式提供了一种代码复用的重要技巧</li>
+<li>模板方法的抽象类可以定义具体方法、抽象方法和钩子</li>
+<li>钩子是一种方法，它在抽象类中不做事，或者只做默认的事情，子类可以选择要不要去覆盖它</li>
+<li>为防止子类改变模板方法中的算法，可以将模板方法声明为 final</li>
+<li>好莱坞原则，将决策权放在高层模块中，以便决定如何及何时调用低层模块</li>
+<li>策略模式和模板方法模式都封装算法，一个用组合，一个用继承
+	
+	</div>
+  <a type="button" href="/2018/07/04/模版方法模式/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2018-07-03 </div>
 			<div class="article-title"><a href="/2018/07/03/命令模式/" >命令模式</a></div>						
 		</h3>
@@ -347,51 +406,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-06-24 </div>
-			<div class="article-title"><a href="/2018/06/24/恢复drop后的表/" >恢复drop后的表</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h4 id="查看回收站中的表"><a href="#查看回收站中的表" class="headerlink" title="查看回收站中的表"></a>查看回收站中的表</h4><p>select object_name,original_name,partition_name,type,ts_name,createtime,droptime from recyclebin;</p>
-<h4 id="恢复表"><a href="#恢复表" class="headerlink" title="恢复表"></a>恢复表</h4><p>flashback table “BIN$hgcd$0” to before drop;</p>
-
-	
-	</div>
-  <a type="button" href="/2018/06/24/恢复drop后的表/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2018-06-04 </div>
-			<div class="article-title"><a href="/2018/06/04/玛剧-心甘情愿/" >玛剧-心甘情愿</a></div>						
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>有人用一生的时间留着一个人，但是对方只用了一刹那就决定离开，永恒的爱情是来自单方面的心甘情愿。</p>
-
-	
-	</div>
-  <a type="button" href="/2018/06/04/玛剧-心甘情愿/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -442,31 +456,31 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Design-Pattern/">Design Pattern<span>4</span></a></li>
+			<li><a href="/tags/Thread/">Thread<span>2</span></a></li>
+		
+			<li><a href="/tags/Design-Pattern/">Design Pattern<span>6</span></a></li>
 		
 			<li><a href="/tags/SQL/">SQL<span>4</span></a></li>
 		
-			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
-		
-			<li><a href="/tags/Vue/">Vue<span>2</span></a></li>
-		
-			<li><a href="/tags/Thread/">Thread<span>2</span></a></li>
-		
-			<li><a href="/tags/POI/">POI<span>1</span></a></li>
-		
 			<li><a href="/tags/Java/">Java<span>3</span></a></li>
-		
-			<li><a href="/tags/Linux/">Linux<span>4</span></a></li>
 		
 			<li><a href="/tags/Sql/">Sql<span>1</span></a></li>
 		
+			<li><a href="/tags/POI/">POI<span>1</span></a></li>
+		
+			<li><a href="/tags/Vue/">Vue<span>2</span></a></li>
+		
 			<li><a href="/tags/CSS/">CSS<span>1</span></a></li>
 		
-			<li><a href="/tags/WebService/">WebService<span>1</span></a></li>
+			<li><a href="/tags/Linux/">Linux<span>4</span></a></li>
+		
+			<li><a href="/tags/Essay/">Essay<span>10</span></a></li>
+		
+			<li><a href="/tags/Io/">Io<span>1</span></a></li>
 		
 			<li><a href="/tags/Invest/">Invest<span>2</span></a></li>
 		
-			<li><a href="/tags/Io/">Io<span>1</span></a></li>
+			<li><a href="/tags/WebService/">WebService<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -480,6 +494,14 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2018/07/04/适配器与外观模式/" ><i class="fa fa-file-o"></i>适配器与外观模式</a>
+      </li>
+    
+      <li>
+        <a href="/2018/07/04/模版方法模式/" ><i class="fa fa-file-o"></i>模版方法模式</a>
+      </li>
+    
+      <li>
         <a href="/2018/07/03/命令模式/" ><i class="fa fa-file-o"></i>命令模式</a>
       </li>
     
@@ -489,14 +511,6 @@
     
       <li>
         <a href="/2018/06/27/sqlplus创建用户表空间赋权/" ><i class="fa fa-file-o"></i>sqlplus创建用户表空间赋权</a>
-      </li>
-    
-      <li>
-        <a href="/2018/06/25/调用Http服务/" ><i class="fa fa-file-o"></i>调用Http服务</a>
-      </li>
-    
-      <li>
-        <a href="/2018/06/24/window删除多余启动项/" ><i class="fa fa-file-o"></i>window删除多余启动项</a>
       </li>
     
   </ul>

@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>适配器与外观模式 | Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="适配器模式：将一个类的接口，转换成客户期望的另一个接口，适配器让原本接口不兼容的类可以合作无间。在中国使用美国制造的笔记本电脑，需要使用一个交流电的适配器客户使用适配器的过程如下：
+
+客户通过目标接口调用适配器的方法对适配器发出请求
+适配器使用被适配者接口把请求转换成被适配者的一个或多个调用接口
+客户接收到调用的结果，但并未察觉这一切是适配器在起转换作用
+
+外观模式(Facade-Pattern)：提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。提供简化的接口的同时，依然把系统完整的功能暴露出来，将客户实现从子系统中解耦适配器模式与外观模式区别：适配器意图是改变接口符合客户的期望(将接口转换成不同接口)，而外观模式的意图是提供子系统的一个简化接口(简化接口)适配器模式与外观模式相同点：都可以包装许多类
+家庭影院观看电影，困难的方式是需要打开相关的许多子系统将灯光调暗 -&amp;gt; 放下屏幕 -&amp;gt; 打开投影机 -&amp;gt; 将投影机输入切换到DVD -&amp;gt;将投影机设置在宽屏模式 -&amp;gt; 打开功放-&amp;gt; 功放设置为环绕立体声 -&amp;gt; 打开 DVD 播放器 -&amp;gt; 开始播放 DVD外观模式是通过简单的方式将这些任务写成类和方法进行封装，达到简化目的
+要点当需要使用一个现在的类而其接口并不符合你的需要时，就使用适配器当需要简化并统一一个很大的接口或者一群复杂的接口时，使用外观适配器改变接口以符合靠窗户的期望外观将客户从一个复杂的子系统中解耦实现一个外观，需要将子系统组合进外观中，然后将工作委托给子系统执行适配器模式与装饰者模式与外观模式区别:适配器将一个对象包装起来以改变接口；装饰者将一个对象包装起来以增加新的行为和责任；外观将一群对象“包装”起来以简化其接口">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="适配器与外观模式"/>
+  <meta property="og:site_name" content="Hexo"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Hexo</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 适配器与外观模式</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>适配器模式：将一个类的接口，转换成客户期望的另一个接口，适配器让原本接口不兼容的类可以合作无间。<br>在中国使用美国制造的笔记本电脑，需要使用一个交流电的适配器<br>客户使用适配器的过程如下：</p>
+<ol>
+<li>客户通过目标接口调用适配器的方法对适配器发出请求</li>
+<li>适配器使用被适配者接口把请求转换成被适配者的一个或多个调用接口</li>
+<li>客户接收到调用的结果，但并未察觉这一切是适配器在起转换作用</li>
+</ol>
+<p><strong>外观模式(Facade-Pattern)</strong>：提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层<br>接口，让子系统更容易使用。提供简化的接口的同时，依然把系统完整的功能暴露出来，将客户实现从子系统中解耦<br><strong>适配器模式与外观模式区别</strong>：适配器意图是改变接口符合客户的期望(将接口转换成不同接口)，<br>而外观模式的意图是提供子系统的一个简化接口(简化接口)<br><strong>适配器模式与外观模式相同点</strong>：都可以包装许多类</p>
+<p>家庭影院观看电影，困难的方式是需要打开相关的许多子系统<br>将灯光调暗 -&gt; 放下屏幕 -&gt; 打开投影机 -&gt; 将投影机输入切换到DVD -&gt;将投影机设置在宽屏模式 -&gt; 打开功放<br>-&gt; 功放设置为环绕立体声 -&gt; 打开 DVD 播放器 -&gt; 开始播放 DVD<br>外观模式是通过简单的方式将这些任务写成类和方法进行封装，达到简化目的</p>
+<p><strong>要点</strong><br>当需要使用一个现在的类而其接口并不符合你的需要时，就使用适配器<br>当需要简化并统一一个很大的接口或者一群复杂的接口时，使用外观<br>适配器改变接口以符合靠窗户的期望<br>外观将客户从一个复杂的子系统中解耦<br>实现一个外观，需要将子系统组合进外观中，然后将工作委托给子系统执行<br><strong>适配器模式与装饰者模式与外观模式区别</strong>:<br>适配器将一个对象包装起来以改变接口；装饰者将一个对象包装起来以增加新的行为和责任；外观将一群对象<br>“包装”起来以简化其接口<br><a id="more"></a><br>示例<br>如果它走起来像鸭子，叫起来像只鸭子，那么他可能是一只包装了鸭子适配器的火鸡</p>
+<p>Duck<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Duck</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>绿头鸭<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> classs MallardDuck implement Duck&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Syso(<span class="string">"quack"</span>)    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Syso(<span class="string">"i'm flying"</span>)    </span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Turkey<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Turkey</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>WildTurkey<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WildTurkey</span> <span class="keyword">implements</span> <span class="title">Turkey</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gobble</span><span class="params">()</span></span>&#123;</span><br><span class="line">        syso(<span class="string">"Gobble gobble"</span>);    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fly</span><span class="params">()</span></span>&#123;</span><br><span class="line">        syso(<span class="string">"i'm flying"</span>);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>缺少鸭子对象，想用一些火鸡对象来冒充。因为火鸡的接口不同，所以不能直接拿来用，需要写个适配器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先需要实现想救困扶危成的类型接口，也就是客户所期望看到的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurkeyAdapter</span> <span class="title">implemenets</span> <span class="title">Duck</span></span>&#123;</span><br><span class="line">   Turkey turkey; </span><br><span class="line">   <span class="comment">// 使用构造器取得适配的对象引用</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TurkeyAdapter</span> <span class="params">(Turkey turkey)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.turkey = turkey    </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// 实现接口中所有的方法</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        turkey.gobble()   </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        turkey.fly()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>TestTest<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DuckTestDrive</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        MallardDuck duck = <span class="keyword">new</span> MallardDuck()</span><br><span class="line">        WildTuckey turkey = <span class="keyword">new</span> WildTurkey();</span><br><span class="line">        Duck turkeyAdapter = <span class="keyword">new</span> TurkeyAdapter(turkey);</span><br><span class="line">        turkey.gobble();</span><br><span class="line">        turkey.fly();</span><br><span class="line">        turkeyAdapter.quack();</span><br><span class="line">        turkeyAdapter.fly();</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2018/07/04/模版方法模式/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+        <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+        <a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+        <a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+        <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+    </div>
+    <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-07-04 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Design-Pattern/">Design Pattern<span>6</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 John Doe
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
